@@ -1,23 +1,53 @@
 import { Link, NavLink as RouterNavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import bee from "@/assets/bee-mascot.png";
 
-const links = [
+type SubLink = { to: string; label: string };
+type NavItem = { to?: string; label: string; children?: SubLink[] };
+
+const navItems: NavItem[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/programs", label: "Programs" },
-  { to: "/events", label: "Events" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/partners-corner", label: "Partner's Corner" },
-  { to: "/contact", label: "Contact" },
+  {
+    label: "About Us",
+    children: [
+      { to: "/about", label: "About BusyBees" },
+      { to: "/about#principal", label: "Principal Desk" },
+    ],
+  },
+  {
+    label: "Our Programs",
+    children: [
+      { to: "/programs/preschool", label: "Preschool" },
+      { to: "/programs/daycare", label: "Daycare" },
+      { to: "/programs/buzzyclub", label: "BuzzyClub" },
+      { to: "/programs/be-creative", label: "Be Creative" },
+      { to: "/programs/summer-camps", label: "Summer Camps" },
+    ],
+  },
+  {
+    label: "Events",
+    children: [
+      { to: "/events", label: "Celebrations" },
+      { to: "/gallery", label: "Photo Gallery" },
+    ],
+  },
+  {
+    label: "Partner's Corner",
+    children: [
+      { to: "/partners-corner#testimonials", label: "Testimonials" },
+      { to: "/partners-corner#why", label: "Why BusyBees" },
+    ],
+  },
+  { to: "/contact", label: "Contact Us" },
 ];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -27,7 +57,18 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setExpanded(null);
+  }, [location.pathname, location.hash]);
+
+  // lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
@@ -57,31 +98,58 @@ export const Navbar = () => {
             </div>
           </Link>
 
+          {/* Desktop nav with dropdowns */}
           <nav className="hidden lg:flex items-center gap-1">
-            {links.map((l) => (
-              <RouterNavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === "/"}
-                className={({ isActive }) =>
-                  cn(
-                    "px-3 py-2 rounded-full text-sm font-medium transition-colors relative",
-                    isActive
-                      ? "text-ink"
-                      : "text-muted-foreground hover:text-ink"
-                  )
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {l.label}
-                    {isActive && (
-                      <span className="absolute left-3 right-3 -bottom-0.5 h-[3px] rounded-full bg-honey" />
+            {navItems.map((item) => {
+              if (!item.children) {
+                return (
+                  <RouterNavLink
+                    key={item.label}
+                    to={item.to!}
+                    end={item.to === "/"}
+                    className={({ isActive }) =>
+                      cn(
+                        "px-3 py-2 rounded-full text-sm font-medium transition-colors relative",
+                        isActive ? "text-ink" : "text-muted-foreground hover:text-ink"
+                      )
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        {item.label}
+                        {isActive && (
+                          <span className="absolute left-3 right-3 -bottom-0.5 h-[3px] rounded-full bg-honey" />
+                        )}
+                      </>
                     )}
-                  </>
-                )}
-              </RouterNavLink>
-            ))}
+                  </RouterNavLink>
+                );
+              }
+              return (
+                <div key={item.label} className="relative group">
+                  <button
+                    className="px-3 py-2 rounded-full text-sm font-medium text-muted-foreground hover:text-ink inline-flex items-center gap-1 transition-colors"
+                    type="button"
+                  >
+                    {item.label}
+                    <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+                  </button>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="min-w-[220px] bg-card border border-border rounded-2xl shadow-lift p-2">
+                      {item.children.map((c) => (
+                        <Link
+                          key={c.to}
+                          to={c.to}
+                          className="block px-4 py-2.5 rounded-xl text-sm text-ink hover:bg-honey/15 hover:text-honey-dark transition-colors"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -90,40 +158,88 @@ export const Navbar = () => {
             </Button>
             <button
               onClick={() => setOpen(!open)}
-              className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full bg-cream border border-border"
+              className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full bg-cream border border-border relative z-[110]"
               aria-label="Menu"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {open && (
-          <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl">
-            <nav className="container-wide py-4 flex flex-col gap-1">
-              {links.map((l) => (
-                <RouterNavLink
-                  key={l.to}
-                  to={l.to}
-                  end={l.to === "/"}
-                  className={({ isActive }) =>
-                    cn(
-                      "px-4 py-3 rounded-2xl text-base font-medium",
-                      isActive ? "bg-honey/15 text-ink" : "text-muted-foreground hover:bg-muted"
-                    )
-                  }
-                >
-                  {l.label}
-                </RouterNavLink>
-              ))}
-              <Button asChild className="mt-2 rounded-full">
-                <Link to="/contact">Enroll Now</Link>
-              </Button>
-            </nav>
-          </div>
-        )}
       </header>
+
+      {/* Mobile full-screen overlay */}
+      <div
+        className={cn(
+          "lg:hidden fixed inset-0 z-[100] bg-background transition-all duration-300",
+          open ? "opacity-100 visible" : "opacity-0 invisible"
+        )}
+      >
+        <div className="absolute inset-0 bg-honeycomb-soft opacity-50 pointer-events-none" />
+        <div className="relative h-full flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-5 right-5 inline-flex items-center justify-center h-11 w-11 rounded-full bg-cream border border-border"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <nav className="flex flex-col gap-1.5 mt-2">
+            {navItems.map((item) => {
+              if (!item.children) {
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to!}
+                    onClick={() => setOpen(false)}
+                    className="px-5 py-4 rounded-2xl text-lg font-display font-semibold text-ink bg-card border border-border"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              const isOpen = expanded === item.label;
+              return (
+                <div key={item.label} className="rounded-2xl bg-card border border-border overflow-hidden">
+                  <button
+                    onClick={() => setExpanded(isOpen ? null : item.label)}
+                    className="w-full flex items-center justify-between px-5 py-4 text-lg font-display font-semibold text-ink"
+                  >
+                    {item.label}
+                    <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
+                  </button>
+                  <div
+                    className={cn(
+                      "grid transition-all duration-300",
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    )}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-3 pb-3 flex flex-col gap-1">
+                        {item.children.map((c) => (
+                          <Link
+                            key={c.to}
+                            to={c.to}
+                            onClick={() => setOpen(false)}
+                            className="px-4 py-3 rounded-xl text-base text-muted-foreground hover:bg-honey/15 hover:text-ink"
+                          >
+                            {c.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            <Button asChild className="mt-4 rounded-full h-12 text-base shadow-honey" onClick={() => setOpen(false)}>
+              <Link to="/contact">Enroll Now</Link>
+            </Button>
+          </nav>
+          <div className="mt-auto pt-8 text-center text-xs text-muted-foreground">
+            +91 (555) BUSY-BEE · hello@busybees.edu
+          </div>
+        </div>
+      </div>
     </>
   );
 };
