@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { LoadingScreen } from "@/components/site/LoadingScreen";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Programs from "./pages/Programs.tsx";
@@ -19,6 +20,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <LoadingScreen />
       <Toaster />
       <Sonner />
       <BrowserRouter>
