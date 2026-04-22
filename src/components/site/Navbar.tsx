@@ -37,8 +37,8 @@ const navItems: NavItem[] = [
   {
     label: "Partner's Corner",
     children: [
-      { to: "/partners-corner#testimonials", label: "Testimonials" },
-      { to: "/partners-corner#why", label: "Why BusyBees" },
+      { to: "/testimonials", label: "Testimonials" },
+      { to: "/why-busybees", label: "Why BusyBees" },
     ],
   },
   { to: "/contact", label: "Contact Us" },

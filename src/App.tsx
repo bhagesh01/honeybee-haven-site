@@ -12,7 +12,8 @@ import Programs from "./pages/Programs.tsx";
 import ProgramDetail from "./pages/ProgramDetail.tsx";
 import Events from "./pages/Events.tsx";
 import Gallery from "./pages/Gallery.tsx";
-import PartnersCorner from "./pages/PartnersCorner.tsx";
+import Testimonials from "./pages/Testimonials.tsx";
+import WhyBusyBees from "./pages/WhyBusyBees.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -34,7 +35,8 @@ const App = () => (
             <Route path="/programs/:slug" element={<ProgramDetail />} />
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/partners-corner" element={<PartnersCorner />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/why-busybees" element={<WhyBusyBees />} />
             <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
