@@ -14,7 +14,7 @@ const navItems: NavItem[] = [
     label: "About Us",
     children: [
       { to: "/about", label: "About BusyBees" },
-      { to: "/about#principal", label: "Principal Desk" },
+      { to: "/principal-desk", label: "Principal Desk" },
     ],
   },
   {
