@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import { BeeAvatar } from "@/components/site/BeeAvatar";
 
 export const Breadcrumb = ({ trail }: { trail: { label: string; to?: string }[] }) => (
   <nav className="flex items-center gap-1 text-sm text-muted-foreground" aria-label="Breadcrumb">
@@ -32,6 +33,7 @@ export const PageHero = ({
 }) => (
   <section className="relative bg-honeycomb pt-12 pb-20 sm:pt-16 sm:pb-24 overflow-hidden">
     <div className="absolute -top-32 -right-24 w-[500px] h-[500px] gradient-sun opacity-70 pointer-events-none" />
+    <BeeAvatar index={(eyebrow.length) % 9} className="hidden md:block absolute top-10 right-12 w-20 animate-float-slow" />
     <div className="container-wide relative">
       <Breadcrumb trail={trail} />
       <div className="mt-6 max-w-3xl">

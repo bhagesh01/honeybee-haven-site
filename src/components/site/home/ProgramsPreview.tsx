@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Baby, Palette, Sun, Sparkles, Rocket } from "lucide-react";
 import { Reveal, SectionHeading } from "../SectionHeading";
 import { Button } from "@/components/ui/button";
+import { BeeAvatar } from "@/components/site/BeeAvatar";
 
 const programs = [
   {
@@ -62,14 +63,14 @@ export const ProgramsPreview = () => {
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {programs.slice(0, 3).map((p, i) => (
             <Reveal key={p.title} delay={i * 0.07}>
-              <ProgramCard {...p} />
+              <ProgramCard {...p} beeIndex={i} />
             </Reveal>
           ))}
         </div>
         <div className="mt-6 grid md:grid-cols-2 gap-6">
           {programs.slice(3).map((p, i) => (
             <Reveal key={p.title} delay={i * 0.07}>
-              <ProgramCard {...p} wide />
+              <ProgramCard {...p} wide beeIndex={i + 3} />
             </Reveal>
           ))}
         </div>
@@ -85,12 +86,16 @@ export const ProgramsPreview = () => {
 };
 
 const ProgramCard = ({
-  icon: Icon, title, age, blurb, accent, border, wide,
+  icon: Icon, title, age, blurb, accent, border, wide, beeIndex = 0,
 }: any) => (
   <article
     className={`group relative bg-card rounded-3xl p-7 border border-border shadow-soft card-lift overflow-hidden
                 after:content-[''] after:absolute after:left-7 after:right-7 after:bottom-0 after:h-1 after:rounded-full ${border}`}
   >
+    <BeeAvatar
+      index={beeIndex}
+      className="absolute -right-3 -top-3 w-14 h-14 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 group-hover:rotate-6 transition-all duration-500"
+    />
     <div className="flex items-start justify-between">
       <div className={`h-12 w-12 rounded-2xl grid place-items-center ${accent}`}>
         <Icon className="h-6 w-6" />

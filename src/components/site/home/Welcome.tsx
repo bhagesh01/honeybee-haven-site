@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import { Reveal } from "../SectionHeading";
+import { BeeAvatar } from "@/components/site/BeeAvatar";
 import classroom from "@/assets/classroom.jpg";
 import paint from "@/assets/g-paint.jpg";
 
@@ -10,6 +11,7 @@ export const Welcome = () => {
       <div className="container-wide grid lg:grid-cols-12 gap-12 items-center">
         {/* Left — overlapping images */}
         <div className="lg:col-span-5 relative">
+          <BeeAvatar index={0} className="absolute -top-6 -left-2 w-16 h-16 z-10 animate-wiggle" />
           <Reveal>
             <div className="relative">
               <img
