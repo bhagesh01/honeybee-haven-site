@@ -7,7 +7,7 @@ import hero from "@/assets/hero-child.jpg";
 import classroom from "@/assets/classroom.jpg";
 import garden from "@/assets/g-garden.jpg";
 import paint from "@/assets/g-paint.jpg";
-import { BeeAvatar } from "@/components/site/BeeAvatar";
+import bee from "@/assets/bee-mascot.png";
 import { cn } from "@/lib/utils";
 
 const slides = [
@@ -61,14 +61,13 @@ export const Hero = () => {
               warmth with modern learning — so your little one stays curious for life.
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3 relative">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="rounded-full px-7 h-12 text-base shadow-honey">
                 <Link to="/contact"><Calendar className="h-4 w-4" /> Book a Private Tour</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full px-7 h-12 text-base border-2 border-ink/15 bg-card hover:bg-cream">
                 <Link to="/programs">View Curriculum <ArrowRight className="h-4 w-4" /></Link>
               </Button>
-              <BeeAvatar index={3} className="hidden sm:block absolute -right-6 -top-10 w-14 h-14 animate-wiggle" />
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-4 max-w-md">
@@ -162,15 +161,11 @@ export const Hero = () => {
                 ))}
               </div>
 
-              {/* floating bee mascot (waving) */}
-              <BeeAvatar
-                index={5}
-                className="absolute -top-8 -left-6 w-24 h-24 animate-bee"
-              />
-              {/* peeking bee bottom-right */}
-              <BeeAvatar
-                index={2}
-                className="hidden sm:block absolute -bottom-4 right-6 w-16 h-16 animate-float-slow"
+              {/* floating bee */}
+              <img
+                src={bee}
+                alt=""
+                className="absolute -top-6 -left-4 w-20 h-20 animate-bee drop-shadow-xl pointer-events-none"
               />
 
               {/* badge card */}

@@ -3,7 +3,6 @@ import { Quote, Star, ChevronLeft, ChevronRight, CalendarDays, Heart, PartyPoppe
 import Autoplay from "embla-carousel-autoplay";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
-import { BeeAvatar, beeFor } from "@/components/site/BeeAvatar";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -53,8 +52,8 @@ const TestimonialCard = ({ t }: { t: Testimonial }) => (
     <StarRow count={t.rating} />
     <p className="font-display text-lg text-ink leading-snug flex-1 mt-4">"{t.text}"</p>
     <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
-      <div className="relative h-12 w-12 rounded-full bg-honey/20 ring-2 ring-honey/40 grid place-items-center shrink-0 overflow-hidden">
-        <img src={beeFor(t.name)} alt="" aria-hidden className="h-11 w-11 object-contain" />
+      <div className="h-11 w-11 rounded-full bg-honey grid place-items-center font-bold text-ink shrink-0">
+        {t.initials}
       </div>
       <div>
         <div className="font-semibold text-ink">{t.name}</div>
@@ -240,13 +239,10 @@ const PARENT_EVENTS: ParentEvent[] = [
 ];
 
 const ConnectingParents = () => (
-  <section className="py-20 bg-honeycomb-soft relative overflow-hidden">
-    <BeeAvatar index={4} className="hidden md:block absolute top-10 left-6 w-16 animate-float-slow" />
-    <BeeAvatar index={7} className="hidden md:block absolute bottom-12 right-8 w-20 animate-wiggle" />
-    <div className="container-wide relative">
+  <section className="py-20 bg-honeycomb-soft">
+    <div className="container-wide">
       <Reveal>
         <div className="max-w-2xl mx-auto text-center mb-14">
-          <BeeAvatar index={6} className="mx-auto mb-4 h-14 w-14 animate-float" />
           <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-honey mb-3">
             Community
           </span>

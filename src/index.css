@@ -185,13 +185,6 @@
 @layer utilities {
   .animate-float { animation: float 6s ease-in-out infinite; }
   .animate-fade-in { animation: fadeIn 0.4s ease-out both; }
-  .animate-wiggle { animation: wiggle 4s ease-in-out infinite; transform-origin: 50% 80%; }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
-  }
-  .hover-bee { transition: transform .35s ease; }
-  .hover-bee:hover { transform: translateY(-4px) rotate(-6deg); }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
