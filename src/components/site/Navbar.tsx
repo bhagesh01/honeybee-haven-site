@@ -167,31 +167,15 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile backdrop */}
-      <div
-        onClick={() => setOpen(false)}
-        aria-hidden="true"
-        className={cn(
-          "lg:hidden fixed inset-0 z-[90] bg-ink/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out",
-          open ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-        style={{ willChange: "opacity" }}
-      />
-
-      {/* Mobile full-screen panel */}
+      {/* Mobile full-screen overlay */}
       <div
         className={cn(
-          "lg:hidden fixed inset-0 z-[100] bg-background ease-in-out",
-          "transition-[transform,opacity] duration-300",
-          open
-            ? "translate-x-0 opacity-100"
-            : "translate-x-full opacity-0 pointer-events-none"
+          "lg:hidden fixed inset-0 z-[100] bg-background transition-all duration-300",
+          open ? "opacity-100 visible" : "opacity-0 invisible"
         )}
-        style={{ willChange: "transform, opacity", transform: open ? "translate3d(0,0,0)" : "translate3d(100%,0,0)" }}
-        aria-hidden={!open}
       >
         <div className="absolute inset-0 bg-honeycomb-soft opacity-50 pointer-events-none" />
-        <div className="relative h-full flex flex-col pt-20 pb-8 px-6 overflow-y-auto overscroll-contain">
+        <div className="relative h-full flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
           <button
             onClick={() => setOpen(false)}
             className="absolute top-5 right-5 inline-flex items-center justify-center h-11 w-11 rounded-full bg-cream border border-border"
