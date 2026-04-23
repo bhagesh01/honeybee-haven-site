@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight, CalendarDays, Heart, PartyPopper, Castle } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
@@ -194,8 +194,88 @@ const Testimonials = () => {
           )}
         </div>
       </section>
+
+      <ConnectingParents />
     </>
   );
 };
+
+type ParentEvent = {
+  title: string;
+  description: string;
+  Icon: typeof CalendarDays;
+  accent: string;
+};
+
+const PARENT_EVENTS: ParentEvent[] = [
+  {
+    title: "Open Days",
+    description:
+      "At least six dedicated sessions a year where we sit down with parents to discuss each child's growth, milestones, and any suggestions you'd like to share. Progress is tracked together, all year long.",
+    Icon: CalendarDays,
+    accent: "bg-honey/15 text-ink",
+  },
+  {
+    title: "Grand-parents Day",
+    description:
+      "A celebration just for grandparents — games, talk shows, and shared stories that honour the special bond between little ones and their grand-dads and grand-moms.",
+    Icon: Heart,
+    accent: "bg-leaf/15 text-ink",
+  },
+  {
+    title: "Christmas Funfair",
+    description:
+      "A festive family bash where parents and children put up stalls, play games, and soak in the spirit of the season together as one big BusyBees community.",
+    Icon: PartyPopper,
+    accent: "bg-honey/15 text-ink",
+  },
+  {
+    title: "Killa-making Competition",
+    description:
+      "A BusyBees signature for Diwali — families build forts and killas together and decorate them with little Mawlas, celebrating tradition through creativity.",
+    Icon: Castle,
+    accent: "bg-cream text-ink",
+  },
+];
+
+const ConnectingParents = () => (
+  <section className="py-20 bg-honeycomb-soft">
+    <div className="container-wide">
+      <Reveal>
+        <div className="max-w-2xl mx-auto text-center mb-14">
+          <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-honey mb-3">
+            Community
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
+            Connecting <span className="marker-honey">Parents</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground leading-relaxed">
+            We host special events through the year where parents join their little ones — or
+            simply each other — to celebrate, share, and grow alongside our school community.
+          </p>
+        </div>
+      </Reveal>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {PARENT_EVENTS.map((e, i) => (
+          <Reveal key={e.title} delay={i * 0.05}>
+            <article className="group relative bg-card rounded-3xl p-7 border border-border shadow-soft card-lift h-full flex gap-5">
+              <div className={`shrink-0 h-14 w-14 rounded-2xl grid place-items-center ${e.accent}`}>
+                <e.Icon className="h-7 w-7" aria-hidden />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-display text-xl font-semibold text-ink">{e.title}</h3>
+                <p className="mt-2 text-muted-foreground leading-relaxed text-[15px]">
+                  {e.description}
+                </p>
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 
 export default Testimonials;
