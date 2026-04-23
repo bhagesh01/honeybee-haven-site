@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import bee from "@/assets/bee-mascot.png";
+import { BeeAvatar } from "@/components/site/BeeAvatar";
 
 export const CtaSection = () => {
   return (
@@ -9,7 +9,8 @@ export const CtaSection = () => {
       <div className="container-wide">
         <div className="relative overflow-hidden rounded-[2.5rem] gradient-honey p-10 sm:p-16 text-ink shadow-lift">
           <div className="absolute inset-0 bg-honeycomb-soft opacity-30" />
-          <img src={bee} alt="" className="absolute -right-6 -bottom-8 w-56 sm:w-72 opacity-90 animate-float-slow" />
+          <BeeAvatar index={8} className="absolute -right-4 -bottom-6 w-56 sm:w-72 animate-float-slow" />
+          <BeeAvatar index={6} className="hidden md:block absolute right-1/3 top-6 w-16 animate-wiggle" />
           <div className="relative max-w-2xl">
             <span className="font-hand text-3xl text-honey-dark">Ready to visit?</span>
             <h2 className="mt-2 font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05]">
