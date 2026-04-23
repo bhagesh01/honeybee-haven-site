@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight, CalendarDays, Heart, PartyPopper, Castle } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
