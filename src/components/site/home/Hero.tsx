@@ -30,7 +30,7 @@ export const Hero = () => {
   const next = () => setIdx((i) => (i + 1) % slides.length);
 
   return (
-    <section className="relative bg-honeycomb overflow-hidden pt-10 pb-20 sm:pt-14 sm:pb-28">
+    <section className="relative bg-honeycomb overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-28">
       <div className="absolute -top-32 -left-32 w-[600px] h-[600px] gradient-sun pointer-events-none" />
       <div className="absolute top-40 right-0 w-[420px] h-[420px] gradient-sun opacity-60 pointer-events-none" />
 
@@ -101,7 +101,7 @@ export const Hero = () => {
 
               {/* Carousel viewport */}
               <div
-                className="relative w-full aspect-[4/5] sm:aspect-[5/5] shadow-lift bg-muted"
+                className="relative w-full h-[55vh] min-h-[320px] sm:h-[65vh] sm:min-h-[420px] lg:h-auto lg:aspect-[5/5] lg:max-h-[640px] shadow-lift bg-muted"
                 style={{ borderRadius: "58% 42% 50% 50% / 55% 45% 55% 45%", overflow: "hidden" }}
               >
                 {slides.map((s, i) => (
