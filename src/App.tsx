@@ -20,6 +20,7 @@ import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
+// route-cache-bust: v2
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
