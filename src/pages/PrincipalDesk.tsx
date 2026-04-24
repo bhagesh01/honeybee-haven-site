@@ -1,7 +1,7 @@
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
 import { Quote } from "lucide-react";
-import principal from "@/assets/principal.jpg";
+import principal from "@/assets/principal_desk.png";
 
 const PrincipalDesk = () => {
   return (

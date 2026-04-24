@@ -29,13 +29,14 @@ const Contact = () => {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="rounded-[2rem] overflow-hidden border border-border shadow-soft aspect-[16/9] mt-6">
-                <iframe
-                  title="BusyBees location"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=77.58%2C12.96%2C77.62%2C12.99&layer=mapnik"
-                  className="w-full h-full"
-                  loading="lazy"
-                />
-              </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d18842.107907379395!2d73.773602!3d18.653456!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9ddb5c7d137%3A0x1f6d6df1eb86a706!2sBUSY%20BEES%20Preschool%20and%20Daycare%20-%20Where%20Learning%20is%20Un-bee-lievably%20Fun%20*21*21!5e1!3m2!1sen!2sus!4v1777010866898!5m2!1sen!2sus"
+    className="w-full h-full border-0"
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
             </Reveal>
           </div>
 

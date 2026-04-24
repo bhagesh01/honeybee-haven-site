@@ -12,12 +12,41 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import g1 from "@/assets/g-paint.jpg";
-import g2 from "@/assets/g-blocks.jpg";
-import g3 from "@/assets/g-garden.jpg";
-import g4 from "@/assets/g-reading.jpg";
-import g5 from "@/assets/g-stage.jpg";
-import g6 from "@/assets/g-snack.jpg";
+// import g1 from "@/assets/g-paint.jpg";
+// import g2 from "@/assets/g-blocks.jpg";
+// import g3 from "@/assets/g-garden.jpg";
+// import g4 from "@/assets/g-reading.jpg";
+// import g5 from "@/assets/g-stage.jpg";
+// import g6 from "@/assets/g-snack.jpg";
+
+import g1 from "@/assets/gallery_assets/thumbs_Annual-Concert.jpg";
+import g2 from "@/assets/gallery_assets/thumbs_ArtClub.jpg";
+import g3 from "@/assets/gallery_assets/thumbs_GP.jpg";
+import g4 from "@/assets/gallery_assets/thumbs_GP2.jpg";
+import g5 from "@/assets/gallery_assets/thumbs_Holi.jpg";
+import g6 from "@/assets/gallery_assets/thumbs_Park-Picnic.jpg";
+import g7 from "@/assets/gallery_assets/thumbs_Rakhi.jpg";
+import g8 from "@/assets/gallery_assets/thumbs_ReadingFun.jpg";
+import g9 from "@/assets/gallery_assets/thumbs_ShowTell.jpg";
+import g10 from "@/assets/gallery_assets/thumbs_SportsDay.jpg";
+import g11 from "@/assets/gallery_assets/thumbs_Summer-Camp.jpg";
+import g12 from "@/assets/gallery_assets/thumbs_SummerCamp.jpg";
+import g13 from "@/assets/gallery_assets/thumbs_brushingDay.jpg";
+import g14 from "@/assets/gallery_assets/thumbs_busRide.jpg";
+import g15 from "@/assets/gallery_assets/thumbs_busRide1.jpg";
+import g16 from "@/assets/gallery_assets/thumbs_farmPicnic.jpg";
+import g17 from "@/assets/gallery_assets/thumbs_field-trip.jpg";
+import g18 from "@/assets/gallery_assets/thumbs_horse.jpg";
+import g19 from "@/assets/gallery_assets/thumbs_juiceMaking.jpg";
+import g20 from "@/assets/gallery_assets/thumbs_market.jpg";
+import g21 from "@/assets/gallery_assets/thumbs_meet-the-Santa.jpg";
+import g22 from "@/assets/gallery_assets/thumbs_palakhi1.jpg";
+import g23 from "@/assets/gallery_assets/thumbs_palakhi2.jpg";
+import g24 from "@/assets/gallery_assets/thumbs_palakhi3.jpg";
+import g25 from "@/assets/gallery_assets/thumbs_pretendPlay.jpg";
+
+
+
 import classroom from "@/assets/classroom.jpg";
 
 type Photo = { src: string; alt: string; category: string };

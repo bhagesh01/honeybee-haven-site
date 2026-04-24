@@ -4,6 +4,7 @@ import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import bee from "@/assets/bee-mascot.png";
+import beeLogo from "@/assets/beelogo.png";
 
 type SubLink = { to: string; label: string };
 type NavItem = { to?: string; label: string; children?: SubLink[] };
@@ -91,10 +92,10 @@ export const Navbar = () => {
       >
         <div className="container-wide flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-2 group">
-            <img src={bee} alt="" className="h-10 w-10 group-hover:rotate-[-8deg] transition-transform" />
+            <img src={beeLogo} alt="" className="h-20 w-16 group-hover:rotate-[-8deg] transition-transform" />
             <div className="leading-none">
               <div className="font-display text-xl font-bold text-ink">BusyBees</div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Preschool · Est. 2010</div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground ">Preschool and DayCare</div>
             </div>
           </Link>
 

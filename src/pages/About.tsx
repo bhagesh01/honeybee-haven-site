@@ -3,8 +3,8 @@ import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
 import { Heart, Compass, Users, Leaf, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import classroom from "@/assets/classroom.jpg";
-import garden from "@/assets/g-garden.jpg";
+import classroom from "@/assets/aboutbusybuzz.jfif";
+import baby from "@/assets/about_bussy_small.jpg";
 
 const values = [
   { icon: Heart,    title: "Warmth first",  desc: "Children learn best when they feel safe, seen, and quietly cheered on." },
@@ -39,7 +39,7 @@ const About = () => {
                   className="rounded-[2rem] shadow-lift w-full aspect-[4/5] object-cover tilt-r"
                 />
                 <img
-                  src={garden}
+                  src={baby}
                   alt="Outdoor play garden"
                   loading="lazy"
                   className="hidden sm:block absolute -bottom-10 -left-10 w-44 h-44 object-cover rounded-3xl shadow-lift border-4 border-card tilt-l"

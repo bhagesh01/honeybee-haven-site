@@ -7,14 +7,25 @@ import hero from "@/assets/hero-child.jpg";
 import classroom from "@/assets/classroom.jpg";
 import garden from "@/assets/g-garden.jpg";
 import paint from "@/assets/g-paint.jpg";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/avatar5.png";
+
+// new corousel images import
+import image1 from "@/assets/corousel_img_1.png";
+import image2 from "@/assets/pyjamaParty1.jpg";
+import image3 from "@/assets/corousel_img_3.png";
+import image4 from "@/assets/trip1.jpg";
+import image5 from "@/assets/sportday1.jpg";
+import image6 from "@/assets/slate.jpg";
+
 import { cn } from "@/lib/utils";
 
 const slides = [
-  { src: hero, alt: "Smiling preschool child in a warm classroom" },
-  { src: garden, alt: "Children playing in the garden" },
-  { src: classroom, alt: "Bright classroom with learning corners" },
-  { src: paint, alt: "Child painting a colorful picture" },
+  { src: image1, alt: "Smiling preschool child in a warm classroom" },
+  { src: image2, alt: "Children playing in the garden" },
+  { src: image3, alt: "Children engaged in a creative activity" },
+  { src: image4, alt: "Child painting a colorful picture" },
+  { src: image5, alt: "Child painting a colorful picture" },
+  { src: image6, alt: "Sports day at BusyBees" },
 ];
 
 export const Hero = () => {

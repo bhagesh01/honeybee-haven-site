@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Instagram, Facebook, Youtube } from "lucide-react";
 import bee from "@/assets/bee-mascot.png";
+import beeLogo from "@/assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -17,7 +18,7 @@ export const Footer = () => {
       <div className="container-wide relative pt-20 pb-10 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3">
-            <img src={bee} alt="" className="h-12 w-12" />
+            <img src={beeLogo} alt="" className="h-20 w-16" />
             <div>
               <div className="font-display text-2xl font-bold text-cream">BusyBees</div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-honey-light">Preschool · Est. 2010</div>
