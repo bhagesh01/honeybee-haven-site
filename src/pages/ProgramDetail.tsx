@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import { ArrowLeft, CheckCircle2, Sparkles, Quote } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
@@ -9,6 +10,9 @@ import paint from "@/assets/g-paint.jpg";
 import garden from "@/assets/g-garden.jpg";
 import reading from "@/assets/g-reading.jpg";
 import stage from "@/assets/g-stage.jpg";
+
+const Preschool = lazy(() => import("./Preschool"));
+const Daycare = lazy(() => import("./Daycare"));
 
 type Section =
   | { kind: "para"; text: string }
@@ -309,6 +313,23 @@ const data: Record<string, Program> = {
 
 const ProgramDetail = () => {
   const { slug = "" } = useParams();
+
+  // Dedicated redesigned pages override the generic template
+  if (slug === "preschool") {
+    return (
+      <Suspense fallback={null}>
+        <Preschool />
+      </Suspense>
+    );
+  }
+  if (slug === "daycare") {
+    return (
+      <Suspense fallback={null}>
+        <Daycare />
+      </Suspense>
+    );
+  }
+
   const p = data[slug];
   if (!p) return <Navigate to="/programs" replace />;
 
