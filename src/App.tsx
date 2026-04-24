@@ -11,6 +11,7 @@ import PrincipalDesk from "./pages/PrincipalDesk.tsx";
 import Programs from "./pages/Programs.tsx";
 import ProgramDetail from "./pages/ProgramDetail.tsx";
 import Preschool from "./pages/Preschool.tsx";
+import Daycare from "./pages/Daycare.tsx";
 import Events from "./pages/Events.tsx";
 import Gallery from "./pages/Gallery.tsx";
 import Testimonials from "./pages/Testimonials.tsx";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/principal-desk" element={<PrincipalDesk />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/preschool" element={<Preschool />} />
+            <Route path="/programs/daycare" element={<Daycare />} />
             <Route path="/programs/:slug" element={<ProgramDetail />} />
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
