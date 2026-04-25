@@ -39,7 +39,7 @@ export const GalleryPreview = () => {
           {shots.map((s, i) => (
             <Reveal key={i} delay={i * 0.05} className={s.span}>
               <div className={`relative overflow-hidden rounded-3xl group ${s.h} h-full`}>
-                <img src={s.src} alt={s.alt} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={s.src} alt={s.alt} width={800} height={600} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Reveal>
