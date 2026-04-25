@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/beelogo.png";
 
 type SubLink = { to: string; label: string };

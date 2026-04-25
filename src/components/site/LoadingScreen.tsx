@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/bee-mascot.webp";
 
 export const LoadingScreen = () => {
   const [hidden, setHidden] = useState(false);

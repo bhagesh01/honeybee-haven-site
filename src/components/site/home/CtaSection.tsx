@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/bee-mascot.webp";
 
 export const CtaSection = () => {
   return (

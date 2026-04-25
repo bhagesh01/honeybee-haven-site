@@ -13,10 +13,10 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import classroom from "@/assets/classroom.jpg";
+import classroom from "@/assets/classroom.webp";
 import garden from "@/assets/g-garden.jpg";
 import reading from "@/assets/g-reading.jpg";
-import paint from "@/assets/g-paint.jpg";
+import paint from "@/assets/g-paint.webp";
 import blocks from "@/assets/g-blocks.jpg";
 
 const curriculumPoints = [

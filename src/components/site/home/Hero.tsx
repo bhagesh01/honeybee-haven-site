@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import hero from "@/assets/hero-child.jpg";
-import classroom from "@/assets/classroom.jpg";
+import hero from "@/assets/hero-child.webp";
+import classroom from "@/assets/classroom.webp";
 import garden from "@/assets/g-garden.jpg";
-import paint from "@/assets/g-paint.jpg";
+import paint from "@/assets/g-paint.webp";
 import bee from "@/assets/avatar5.png";
 
 // new corousel images import

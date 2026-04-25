@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Instagram, Facebook, Youtube } from "lucide-react";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/logo.png";
 
 export const Footer = () => {
