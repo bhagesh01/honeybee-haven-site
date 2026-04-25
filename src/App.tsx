@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
+import { RouteFallback } from "@/components/site/RouteFallback";
 import Index from "./pages/Index.tsx";
 
 const About = lazy(() => import("./pages/About.tsx"));
@@ -30,7 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Suspense fallback={null}>
+        <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route element={<SiteLayout />}>
               <Route path="/" element={<Index />} />
