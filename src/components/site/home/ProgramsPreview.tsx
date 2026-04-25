@@ -101,8 +101,8 @@ const ProgramCard = ({
     <p className="mt-2.5 text-muted-foreground leading-relaxed text-sm">
       {blurb}
     </p>
-    <Link to="/programs" className="mt-5 inline-flex items-center gap-1.5 text-honey-dark font-semibold text-sm group/link">
-      Read more
+    <Link to="/programs" aria-label={`Read more about ${title}`} className="mt-5 inline-flex items-center gap-1.5 text-honey-dark font-semibold text-sm group/link">
+      Read more about {title}
       <ArrowUpRight className="h-4 w-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
     </Link>
   </article>
