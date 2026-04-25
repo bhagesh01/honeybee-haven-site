@@ -131,6 +131,9 @@ export const Hero = () => {
                       alt={s.alt}
                       width={1024}
                       height={1024}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding={i === 0 ? "sync" : "async"}
+                      {...(i === 0 ? { fetchPriority: "high" as any } : {})}
                       onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
                       className={cn(
                         "w-full h-full object-cover transition-opacity duration-500",
