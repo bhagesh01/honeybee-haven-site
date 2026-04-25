@@ -114,15 +114,17 @@ const Gallery = () => {
                 <button
                   key={`${p.src}-${globalIndex}`}
                   onClick={() => setOpen(globalIndex)}
-                  className="block w-full overflow-hidden rounded-2xl group relative shadow-soft transition-transform duration-300 hover:-translate-y-0.5"
+                  className="block w-full overflow-hidden rounded-2xl group relative shadow-soft transition-transform duration-300 hover:-translate-y-0.5 bg-cream"
                   aria-label={`Open photo: ${p.alt}`}
                 >
                   <SmartImage
                     src={p.src}
                     alt={p.alt}
                     aspect="aspect-square"
-                    wrapperClassName="rounded-2xl"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                    fit="contain"
+                    wrapperClassName="rounded-2xl bg-cream"
+                    className="p-1 transition-transform duration-700 group-hover:scale-[1.04]"
+                    sizes="(min-width:1024px) 25vw, (min-width:640px) 33vw, 50vw"
                   />
                   <div className="absolute inset-0 ring-0 group-hover:ring-2 ring-honey/60 rounded-2xl transition-all pointer-events-none" />
                 </button>
