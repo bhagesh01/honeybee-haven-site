@@ -4,7 +4,7 @@ import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
 import stage from "@/assets/g-stage.jpg";
 import garden from "@/assets/g-garden.jpg";
 import reading from "@/assets/g-reading.jpg";
-import paint from "@/assets/g-paint.jpg";
+import paint from "@/assets/g-paint.webp";
 
 const upcoming = [
   { day: "22", mon: "Oct", title: "Annual Honey Harvest Festival", time: "10 AM – 2 PM", loc: "Main Garden", img: garden, desc: "A day of crafts, honey tasting, story circles and outdoor games for the whole family." },

@@ -12,7 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-// import g1 from "@/assets/g-paint.jpg";
+// import g1 from "@/assets/g-paint.webp";
 // import g2 from "@/assets/g-blocks.jpg";
 // import g3 from "@/assets/g-garden.jpg";
 // import g4 from "@/assets/g-reading.jpg";
@@ -47,7 +47,7 @@ import g25 from "@/assets/gallery_assets/thumbs_pretendPlay.jpg";
 
 
 
-import classroom from "@/assets/classroom.jpg";
+import classroom from "@/assets/classroom.webp";
 
 type Photo = { src: string; alt: string; category: string };
 

@@ -3,7 +3,7 @@ import { ShieldCheck, Award, HeartHandshake, GraduationCap, Sparkles, Clock, Use
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
 import { Button } from "@/components/ui/button";
-import classroom from "@/assets/classroom.jpg";
+import classroom from "@/assets/classroom.webp";
 
 const highlights = [
   { icon: GraduationCap, t: "Quality learning", d: "A blend of play-way method, Montessori principles and modern teaching practices designed for early years." },

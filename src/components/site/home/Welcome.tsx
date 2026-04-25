@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import { Reveal } from "../SectionHeading";
-import classroom from "@/assets/classroom.jpg";
-import paint from "@/assets/g-paint.jpg";
+import classroom from "@/assets/classroom.webp";
+import paint from "@/assets/g-paint.webp";
 
 export const Welcome = () => {
   return (

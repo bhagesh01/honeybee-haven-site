@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import bee from "@/assets/bee-mascot.png";
+import bee from "@/assets/bee-mascot.webp";
 
 const NotFound = () => {
   return (

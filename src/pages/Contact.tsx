@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
 import { SmartImage } from "@/components/site/SmartImage";
-import classroom from "@/assets/classroom.jpg";
+import classroom from "@/assets/classroom.webp";
 
 const Contact = () => {
   return (

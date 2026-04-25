@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, SectionHeading } from "../SectionHeading";
-import g1 from "@/assets/g-paint.jpg";
+import g1 from "@/assets/g-paint.webp";
 import g2 from "@/assets/g-blocks.jpg";
 import g3 from "@/assets/g-garden.jpg";
 import g4 from "@/assets/g-reading.jpg";
