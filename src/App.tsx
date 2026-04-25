@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,20 +9,76 @@ import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { RouteFallback } from "@/components/site/RouteFallback";
 import Index from "./pages/Index.tsx";
 
-const About = lazy(() => import("./pages/About.tsx"));
-const PrincipalDesk = lazy(() => import("./pages/PrincipalDesk.tsx"));
-const Programs = lazy(() => import("./pages/Programs.tsx"));
-const ProgramDetail = lazy(() => import("./pages/ProgramDetail.tsx"));
-const Preschool = lazy(() => import("./pages/Preschool.tsx"));
-const Daycare = lazy(() => import("./pages/Daycare.tsx"));
-const Events = lazy(() => import("./pages/Events.tsx"));
-const Gallery = lazy(() => import("./pages/Gallery.tsx"));
-const Testimonials = lazy(() => import("./pages/Testimonials.tsx"));
-const WhyBusyBees = lazy(() => import("./pages/WhyBusyBees.tsx"));
-const Contact = lazy(() => import("./pages/Contact.tsx"));
-const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+// Lazy route loaders kept as references so we can prefetch them on idle / hover.
+const loadAbout = () => import("./pages/About.tsx");
+const loadPrincipalDesk = () => import("./pages/PrincipalDesk.tsx");
+const loadPrograms = () => import("./pages/Programs.tsx");
+const loadProgramDetail = () => import("./pages/ProgramDetail.tsx");
+const loadPreschool = () => import("./pages/Preschool.tsx");
+const loadDaycare = () => import("./pages/Daycare.tsx");
+const loadEvents = () => import("./pages/Events.tsx");
+const loadGallery = () => import("./pages/Gallery.tsx");
+const loadTestimonials = () => import("./pages/Testimonials.tsx");
+const loadWhyBusyBees = () => import("./pages/WhyBusyBees.tsx");
+const loadContact = () => import("./pages/Contact.tsx");
+const loadNotFound = () => import("./pages/NotFound.tsx");
 
-const queryClient = new QueryClient();
+const About = lazy(loadAbout);
+const PrincipalDesk = lazy(loadPrincipalDesk);
+const Programs = lazy(loadPrograms);
+const ProgramDetail = lazy(loadProgramDetail);
+const Preschool = lazy(loadPreschool);
+const Daycare = lazy(loadDaycare);
+const Events = lazy(loadEvents);
+const Gallery = lazy(loadGallery);
+const Testimonials = lazy(loadTestimonials);
+const WhyBusyBees = lazy(loadWhyBusyBees);
+const Contact = lazy(loadContact);
+const NotFound = lazy(loadNotFound);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 30 * 60 * 1000,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const prefetchAllRoutes = () => {
+  // Critical pages first
+  loadAbout();
+  loadPrograms();
+  loadContact();
+  // Secondary in next idle slice
+  const idle = (cb: () => void) =>
+    "requestIdleCallback" in window
+      ? (window as any).requestIdleCallback(cb)
+      : setTimeout(cb, 200);
+  idle(() => {
+    loadPrincipalDesk();
+    loadPreschool();
+    loadDaycare();
+    loadProgramDetail();
+    loadEvents();
+    loadGallery();
+    loadTestimonials();
+    loadWhyBusyBees();
+    loadNotFound();
+  });
+};
+
+const RoutePrefetcher = () => {
+  useEffect(() => {
+    const idle = (cb: () => void) =>
+      "requestIdleCallback" in window
+        ? (window as any).requestIdleCallback(cb)
+        : setTimeout(cb, 300);
+    idle(prefetchAllRoutes);
+  }, []);
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -31,6 +87,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <RoutePrefetcher />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route element={<SiteLayout />}>
