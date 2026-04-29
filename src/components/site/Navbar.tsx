@@ -198,7 +198,7 @@ export const Navbar = () => {
               ? "opacity-100 translate-y-0 visible pointer-events-auto"
               : "opacity-0 -translate-y-2 invisible pointer-events-none"
           )}
-          style={{ top: (headerRef.current?.getBoundingClientRect().bottom ?? 80) + "px" }}
+          style={{ top: headerBottom + "px" }}
         >
           <div className="absolute inset-0 bg-honeycomb-soft opacity-20 pointer-events-none" />
           <div className="relative h-full overflow-y-auto px-5 py-5">
