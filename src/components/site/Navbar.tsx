@@ -47,6 +47,7 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [headerBottom, setHeaderBottom] = useState(80);
   const location = useLocation();
   const headerRef = useRef<HTMLElement>(null);
 
@@ -56,6 +57,17 @@ export const Navbar = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const measure = () => {
+      if (headerRef.current) {
+        setHeaderBottom(headerRef.current.getBoundingClientRect().bottom);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [open]);
 
   useEffect(() => {
     setOpen(false);
@@ -178,23 +190,18 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile menu — integrated, drops from header */}
+        {/* Mobile menu — integrated, covers full viewport with solid background */}
         <div
           className={cn(
-            "lg:hidden absolute left-0 right-0 top-full origin-top overflow-hidden transition-all duration-300 ease-out bg-background/98 backdrop-blur-xl border-b border-border shadow-lift",
+            "lg:hidden fixed left-0 right-0 bottom-0 bg-background border-t border-border shadow-lift transition-all duration-300 ease-out",
             open
-              ? "opacity-100 max-h-[calc(100vh-5rem)] visible"
-              : "opacity-0 max-h-0 invisible"
+              ? "opacity-100 translate-y-0 visible pointer-events-auto"
+              : "opacity-0 -translate-y-2 invisible pointer-events-none"
           )}
-          style={{ transitionProperty: "opacity, max-height, transform" }}
+          style={{ top: headerBottom + "px" }}
         >
-          <div className="absolute inset-0 bg-honeycomb-soft opacity-30 pointer-events-none" />
-          <div
-            className={cn(
-              "relative max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-5 transition-transform duration-300",
-              open ? "translate-y-0" : "-translate-y-2"
-            )}
-          >
+          <div className="absolute inset-0 bg-honeycomb-soft opacity-20 pointer-events-none" />
+          <div className="relative h-full overflow-y-auto px-5 py-5">
             <nav className="flex flex-col gap-1.5">
               {navItems.map((item) => {
                 if (!item.children) {
@@ -244,7 +251,7 @@ export const Navbar = () => {
                 );
               })}
             </nav>
-            <div className="mt-6 text-center text-xs text-muted-foreground">
+            <div className="mt-6 pb-8 text-center text-xs text-muted-foreground">
               +91 9011551028 · hello@busybees.edu
             </div>
           </div>
