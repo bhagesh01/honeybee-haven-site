@@ -181,12 +181,12 @@ export const Navbar = () => {
         {/* Mobile menu — integrated, covers full viewport with solid background */}
         <div
           className={cn(
-            "lg:hidden fixed left-0 right-0 top-full bg-background border-b border-border shadow-lift transition-all duration-300 ease-out",
+            "lg:hidden fixed left-0 right-0 bottom-0 bg-background border-t border-border shadow-lift transition-all duration-300 ease-out",
             open
               ? "opacity-100 translate-y-0 visible pointer-events-auto"
               : "opacity-0 -translate-y-2 invisible pointer-events-none"
           )}
-          style={{ height: "calc(100vh - 100%)" }}
+          style={{ top: (headerRef.current?.getBoundingClientRect().bottom ?? 80) + "px" }}
         >
           <div className="absolute inset-0 bg-honeycomb-soft opacity-20 pointer-events-none" />
           <div className="relative h-full overflow-y-auto px-5 py-5">
