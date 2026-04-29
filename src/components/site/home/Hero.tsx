@@ -36,13 +36,90 @@ export const Hero = () => {
   const next = () => setIdx((i) => (i + 1) % slides.length);
 
   return (
-    <section className="relative bg-honeycomb overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-24">
+    <section className="relative bg-honeycomb overflow-hidden">
+      {/* Decorative glows */}
       <div className="absolute -top-32 -left-32 w-[clamp(280px,45vw,600px)] aspect-square gradient-sun pointer-events-none" />
       <div className="absolute top-40 right-0 w-[clamp(220px,32vw,420px)] aspect-square gradient-sun opacity-60 pointer-events-none" />
 
-      <div className="container-wide relative grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        {/* Left — text */}
-        <div className="lg:col-span-6 order-2 lg:order-1">
+      {/* ===== Full-width carousel ===== */}
+      <div className="relative w-full">
+        <div
+          className={cn(
+            "relative w-full overflow-hidden bg-cream",
+            "h-[55vh] sm:h-[65vh] lg:h-[80vh]",
+            "min-h-[360px] max-h-[820px]"
+          )}
+        >
+          {slides.map((s, i) => (
+            <div
+              key={s.src}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-700 ease-out",
+                i === idx ? "opacity-100" : "opacity-0 pointer-events-none"
+              )}
+              aria-hidden={i !== idx}
+            >
+              {!loaded[i] && (
+                <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
+              )}
+              <img
+                src={s.src}
+                alt={s.alt}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding={i === 0 ? "sync" : "async"}
+                {...(i === 0 ? { fetchPriority: "high" as any } : {})}
+                onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
+                sizes="100vw"
+                style={{ objectPosition: "center 30%" }}
+                className={cn(
+                  "w-full h-full object-cover transition-opacity duration-500",
+                  loaded[i] ? "opacity-100" : "opacity-0"
+                )}
+              />
+            </div>
+          ))}
+
+          {/* Soft bottom gradient for legibility of any future overlays */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/20 to-transparent pointer-events-none" />
+        </div>
+
+        {/* ===== Controls BELOW image ===== */}
+        <div className="container-wide mt-5 flex items-center justify-center gap-4">
+          <button
+            onClick={prev}
+            aria-label="Previous slide"
+            className="h-11 w-11 grid place-items-center rounded-full bg-card border border-border shadow-soft text-ink hover:bg-honey hover:text-ink active:scale-95 transition-all"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={cn(
+                  "h-2.5 rounded-full transition-all border border-honey/40",
+                  i === idx ? "w-8 bg-honey" : "w-2.5 bg-cream hover:bg-honey/40"
+                )}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            aria-label="Next slide"
+            className="h-11 w-11 grid place-items-center rounded-full bg-card border border-border shadow-soft text-ink hover:bg-honey hover:text-ink active:scale-95 transition-all"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* ===== Text content under carousel ===== */}
+      <div className="container-wide relative pt-10 pb-12 sm:pt-14 sm:pb-16 lg:pt-16 lg:pb-24 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="lg:col-span-7">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,7 +139,7 @@ export const Hero = () => {
               </span>
             </h1>
 
-            <p className="mt-7 text-[clamp(1rem,1.6vw,1.125rem)] text-muted-foreground max-w-lg leading-relaxed">
+            <p className="mt-7 text-[clamp(1rem,1.6vw,1.125rem)] text-muted-foreground max-w-xl leading-relaxed">
               At BusyBees, we believe every child is a natural researcher. Our play-based curriculum blends Montessori
               warmth with modern learning — so your little one stays curious for life.
             </p>
@@ -75,105 +152,27 @@ export const Hero = () => {
                 <Link to="/programs">View Curriculum <ArrowRight className="h-4 w-4" /></Link>
               </Button>
             </div>
-
-            <div className="mt-12 grid grid-cols-3 gap-4 max-w-md">
-              {[
-                ["14+", "Years caring"],
-                ["1,200+", "Happy families"],
-                ["1:6", "Teacher ratio"],
-              ].map(([n, l]) => (
-                <div key={l as string}>
-                  <div className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-ink">{n}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{l}</div>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
 
-        {/* Right — clean carousel (no clipping mask, no overlapping cards) */}
-        <div className="lg:col-span-6 order-1 lg:order-2">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 0.9, 0.32, 1] }}
-            className="relative w-full max-w-[640px] mx-auto"
-          >
-            {/* soft glow behind */}
-            <div className="absolute -inset-4 -z-10 bg-honey/30 blur-3xl rounded-[2rem]" />
-
-            {/* Carousel viewport — fluid aspect, full image visible (cover but centered focal) */}
-            <div
-              className="relative w-full aspect-[4/5] sm:aspect-[5/5] lg:aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-lift bg-cream border border-honey/20"
-            >
-              {slides.map((s, i) => (
-                <div
-                  key={s.src}
-                  className={cn(
-                    "absolute inset-0 transition-opacity duration-700 ease-out",
-                    i === idx ? "opacity-100" : "opacity-0 pointer-events-none"
-                  )}
-                  aria-hidden={i !== idx}
-                >
-                  {!loaded[i] && (
-                    <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
-                  )}
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    width={1024}
-                    height={1280}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    decoding={i === 0 ? "sync" : "async"}
-                    {...(i === 0 ? { fetchPriority: "high" as any } : {})}
-                    onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
-                    sizes="(min-width:1024px) 45vw, (min-width:640px) 70vw, 90vw"
-                    style={{ objectPosition: "center 30%" }}
-                    className={cn(
-                      "w-full h-full object-cover transition-opacity duration-500",
-                      loaded[i] ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                </div>
-              ))}
-
-              {/* Controls — inside, no overlap with focal area */}
-              <button
-                onClick={prev}
-                aria-label="Previous slide"
-                className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 grid place-items-center rounded-full bg-card/90 backdrop-blur border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={next}
-                aria-label="Next slide"
-                className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 grid place-items-center rounded-full bg-card/90 backdrop-blur border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-
-              {/* Dots — inside bottom, on a subtle gradient strip so they don't hide content */}
-              <div className="absolute inset-x-0 bottom-0 pt-10 pb-4 bg-gradient-to-t from-ink/40 to-transparent flex justify-center gap-2 z-10">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setIdx(i)}
-                    aria-label={`Go to slide ${i + 1}`}
-                    className={cn(
-                      "h-2.5 rounded-full transition-all border border-cream/50",
-                      i === idx ? "w-8 bg-honey" : "w-2.5 bg-cream/70 hover:bg-cream"
-                    )}
-                  />
-                ))}
+        <div className="lg:col-span-5">
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              ["14+", "Years caring"],
+              ["1,200+", "Happy families"],
+              ["1:6", "Teacher ratio"],
+            ].map(([n, l]) => (
+              <div key={l as string} className="bg-card/70 border border-border rounded-2xl p-4 text-center shadow-soft">
+                <div className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-ink">{n}</div>
+                <div className="text-xs text-muted-foreground mt-1">{l}</div>
               </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Announcement strip */}
-      <div className="container-wide relative mt-12">
+      <div className="container-wide relative pb-12">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
