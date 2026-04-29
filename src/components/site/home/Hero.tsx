@@ -3,13 +3,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import hero from "@/assets/hero-child.webp";
-import classroom from "@/assets/classroom.webp";
-import garden from "@/assets/g-garden.jpg";
-import paint from "@/assets/g-paint.webp";
-import bee from "@/assets/avatar5.png";
 
-// new corousel images import
+// carousel images
 import image1 from "@/assets/corousel_img_1.png";
 import image2 from "@/assets/pyjamaParty1.jpg";
 import image3 from "@/assets/corousel_img_3.png";
@@ -21,11 +16,11 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   { src: image1, alt: "Smiling preschool child in a warm classroom" },
-  { src: image2, alt: "Children playing in the garden" },
+  { src: image2, alt: "Children at the BusyBees pyjama party" },
   { src: image3, alt: "Children engaged in a creative activity" },
-  { src: image4, alt: "Child painting a colorful picture" },
-  { src: image5, alt: "Child painting a colorful picture" },
-  { src: image6, alt: "Sports day at BusyBees" },
+  { src: image4, alt: "Children enjoying a school trip" },
+  { src: image5, alt: "Sports day at BusyBees" },
+  { src: image6, alt: "Child writing on a slate" },
 ];
 
 export const Hero = () => {
@@ -41,13 +36,13 @@ export const Hero = () => {
   const next = () => setIdx((i) => (i + 1) % slides.length);
 
   return (
-    <section className="relative bg-honeycomb overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-28">
-      <div className="absolute -top-32 -left-32 w-[600px] h-[600px] gradient-sun pointer-events-none" />
-      <div className="absolute top-40 right-0 w-[420px] h-[420px] gradient-sun opacity-60 pointer-events-none" />
+    <section className="relative bg-honeycomb overflow-hidden pt-6 pb-10 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-24">
+      <div className="absolute -top-32 -left-32 w-[clamp(280px,45vw,600px)] aspect-square gradient-sun pointer-events-none" />
+      <div className="absolute top-40 right-0 w-[clamp(220px,32vw,420px)] aspect-square gradient-sun opacity-60 pointer-events-none" />
 
-      <div className="container-wide relative grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+      <div className="container-wide relative grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         {/* Left — text */}
-        <div className="lg:col-span-5 order-2 lg:order-1">
+        <div className="lg:col-span-6 order-2 lg:order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -57,7 +52,7 @@ export const Hero = () => {
               <Sparkles className="h-3.5 w-3.5" /> Established 2010 · Ages 1.5 – 6
             </div>
 
-            <h1 className="mt-5 font-display text-[2.5rem] leading-[1.02] sm:text-5xl lg:text-[4.25rem] font-bold text-ink">
+            <h1 className="mt-5 font-display font-bold text-ink leading-[1.05] text-[clamp(2.25rem,6vw,4.25rem)]">
               Where small steps lead to{" "}
               <span className="relative inline-block italic">
                 <span className="marker-honey">giant leaps</span>
@@ -67,7 +62,7 @@ export const Hero = () => {
               </span>
             </h1>
 
-            <p className="mt-7 text-lg text-muted-foreground max-w-lg leading-relaxed">
+            <p className="mt-7 text-[clamp(1rem,1.6vw,1.125rem)] text-muted-foreground max-w-lg leading-relaxed">
               At BusyBees, we believe every child is a natural researcher. Our play-based curriculum blends Montessori
               warmth with modern learning — so your little one stays curious for life.
             </p>
@@ -88,7 +83,7 @@ export const Hero = () => {
                 ["1:6", "Teacher ratio"],
               ].map(([n, l]) => (
                 <div key={l as string}>
-                  <div className="font-display text-3xl font-bold text-ink">{n}</div>
+                  <div className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-ink">{n}</div>
                   <div className="text-xs text-muted-foreground mt-1">{l}</div>
                 </div>
               ))}
@@ -96,118 +91,82 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right — carousel */}
-        <div className="lg:col-span-7 order-1 lg:order-2 relative">
+        {/* Right — clean carousel (no clipping mask, no overlapping cards) */}
+        <div className="lg:col-span-6 order-1 lg:order-2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 0.9, 0.32, 1] }}
-            className="relative"
+            className="relative w-full max-w-[640px] mx-auto"
           >
-            <div className="relative mx-auto w-full max-w-[640px]">
-              <div
-                className="absolute inset-0 -z-10 bg-honey/40 blur-2xl"
-                style={{ borderRadius: "62% 38% 55% 45% / 50% 60% 40% 50%" }}
-              />
+            {/* soft glow behind */}
+            <div className="absolute -inset-4 -z-10 bg-honey/30 blur-3xl rounded-[2rem]" />
 
-              {/* Carousel viewport */}
-              <div
-                className="relative w-full h-[55vh] min-h-[320px] sm:h-[65vh] sm:min-h-[420px] lg:h-auto lg:aspect-[5/5] lg:max-h-[640px] shadow-lift bg-muted"
-                style={{ borderRadius: "58% 42% 50% 50% / 55% 45% 55% 45%", overflow: "hidden" }}
-              >
-                {slides.map((s, i) => (
-                  <div
-                    key={s.src}
+            {/* Carousel viewport — fluid aspect, full image visible (cover but centered focal) */}
+            <div
+              className="relative w-full aspect-[4/5] sm:aspect-[5/5] lg:aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-lift bg-cream border border-honey/20"
+            >
+              {slides.map((s, i) => (
+                <div
+                  key={s.src}
+                  className={cn(
+                    "absolute inset-0 transition-opacity duration-700 ease-out",
+                    i === idx ? "opacity-100" : "opacity-0 pointer-events-none"
+                  )}
+                  aria-hidden={i !== idx}
+                >
+                  {!loaded[i] && (
+                    <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
+                  )}
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    width={1024}
+                    height={1280}
+                    loading={i === 0 ? "eager" : "lazy"}
+                    decoding={i === 0 ? "sync" : "async"}
+                    {...(i === 0 ? { fetchPriority: "high" as any } : {})}
+                    onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
+                    sizes="(min-width:1024px) 45vw, (min-width:640px) 70vw, 90vw"
+                    style={{ objectPosition: "center 30%" }}
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-700 ease-out",
-                      i === idx ? "opacity-100" : "opacity-0"
+                      "w-full h-full object-cover transition-opacity duration-500",
+                      loaded[i] ? "opacity-100" : "opacity-0"
                     )}
-                  >
-                    {!loaded[i] && (
-                      <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
-                    )}
-                    <img
-                      src={s.src}
-                      alt={s.alt}
-                      width={1024}
-                      height={1024}
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding={i === 0 ? "sync" : "async"}
-                      {...(i === 0 ? { fetchPriority: "high" as any } : {})}
-                      onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
-                      className={cn(
-                        "w-full h-full object-cover transition-opacity duration-500",
-                        loaded[i] ? "opacity-100" : "opacity-0"
-                      )}
-                    />
-                  </div>
-                ))}
-              </div>
+                  />
+                </div>
+              ))}
 
-              {/* Controls */}
+              {/* Controls — inside, no overlap with focal area */}
               <button
                 onClick={prev}
                 aria-label="Previous slide"
-                className="absolute left-1 sm:-left-3 top-1/2 -translate-y-1/2 h-11 w-11 grid place-items-center rounded-full bg-card border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
+                className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 grid place-items-center rounded-full bg-card/90 backdrop-blur border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={next}
                 aria-label="Next slide"
-                className="absolute right-1 sm:-right-3 top-1/2 -translate-y-1/2 h-11 w-11 grid place-items-center rounded-full bg-card border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
+                className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 grid place-items-center rounded-full bg-card/90 backdrop-blur border border-border shadow-soft hover:bg-honey hover:text-ink transition-colors z-10"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
 
-              {/* Dots */}
-              <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 flex gap-2 z-10">
+              {/* Dots — inside bottom, on a subtle gradient strip so they don't hide content */}
+              <div className="absolute inset-x-0 bottom-0 pt-10 pb-4 bg-gradient-to-t from-ink/40 to-transparent flex justify-center gap-2 z-10">
                 {slides.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setIdx(i)}
                     aria-label={`Go to slide ${i + 1}`}
                     className={cn(
-                      "h-2.5 rounded-full transition-all border border-ink/10",
-                      i === idx ? "w-8 bg-honey" : "w-2.5 bg-card"
+                      "h-2.5 rounded-full transition-all border border-cream/50",
+                      i === idx ? "w-8 bg-honey" : "w-2.5 bg-cream/70 hover:bg-cream"
                     )}
                   />
                 ))}
               </div>
-
-              {/* floating bee */}
-              <img
-                src={bee}
-                alt=""
-                className="absolute -top-6 -left-4 w-20 h-20 animate-bee drop-shadow-xl pointer-events-none"
-              />
-
-              {/* badge card */}
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="absolute -left-2 sm:-left-8 bottom-8 bg-card rounded-2xl shadow-lift px-4 py-3 border border-border tilt-l z-10"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-honey grid place-items-center text-ink font-bold">★</div>
-                  <div>
-                    <div className="text-xs text-muted-foreground">Rated</div>
-                    <div className="font-semibold text-ink text-sm">Top Preschool 2024</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* reviews card */}
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55, duration: 0.6 }}
-                className="absolute -right-3 sm:-right-6 top-8 bg-ink text-cream rounded-2xl shadow-lift px-4 py-3 tilt-r max-w-[200px] z-10"
-              >
-                <div className="font-hand text-honey-light text-xl leading-none">Loved by parents</div>
-                <div className="mt-1 text-xs text-cream/80">"Feels like home." — 312 reviews</div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -221,11 +180,11 @@ export const Hero = () => {
           transition={{ delay: 0.6 }}
           className="mx-auto max-w-2xl bg-card border border-border rounded-full shadow-soft pl-2 pr-5 py-2 flex items-center gap-3"
         >
-          <span className="text-[10px] font-bold uppercase tracking-wider bg-accent text-accent-foreground px-3 py-1 rounded-full">New</span>
+          <span className="text-[10px] font-bold uppercase tracking-wider bg-accent text-accent-foreground px-3 py-1 rounded-full whitespace-nowrap">New</span>
           <span className="text-sm text-ink/80 truncate">
             Explore our <span className="font-semibold">2025 Bee-Learning Programme</span> — registration open
           </span>
-          <Link to="/programs" className="ml-auto text-honey-dark"><ArrowRight className="h-4 w-4" /></Link>
+          <Link to="/programs" aria-label="View programs" className="ml-auto text-honey-dark shrink-0"><ArrowRight className="h-4 w-4" /></Link>
         </motion.div>
       </div>
     </section>
