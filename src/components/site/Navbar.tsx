@@ -1,9 +1,7 @@
 import { Link, NavLink as RouterNavLink, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/beelogo.png";
 
 type SubLink = { to: string; label: string };
@@ -50,6 +48,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const location = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -76,17 +75,18 @@ export const Navbar = () => {
       {/* Top bar */}
       <div className="hidden md:block bg-ink text-cream/90 text-xs">
         <div className="container-wide flex items-center justify-between py-2">
-          <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-honey" /> +91 (555) BUSY-BEE</span>
+          <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-honey" /> +91 9011551028</span>
           <span className="font-hand text-honey-light text-base">Admissions open for 2025–26 🐝</span>
           <span>hello@busybees.edu</span>
         </div>
       </div>
 
       <header
+        ref={headerRef}
         className={cn(
           "sticky top-0 z-50 transition-all",
-          scrolled
-            ? "bg-background/85 backdrop-blur-xl shadow-soft border-b border-border/60"
+          scrolled || open
+            ? "bg-background/95 backdrop-blur-xl shadow-soft border-b border-border/60"
             : "bg-background/0"
         )}
       >
@@ -154,93 +154,102 @@ export const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button asChild variant="default" size="sm" className="hidden sm:inline-flex rounded-full px-5 shadow-honey">
-              <Link to="/contact">Enroll Now</Link>
-            </Button>
             <button
               onClick={() => setOpen(!open)}
-              className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full bg-cream border border-border relative z-[110]"
-              aria-label="Menu"
+              className="lg:hidden inline-flex items-center justify-center h-11 w-11 rounded-full bg-cream border border-border relative"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
             >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span className="relative h-5 w-5 block">
+                <Menu
+                  className={cn(
+                    "absolute inset-0 h-5 w-5 transition-all duration-300",
+                    open ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+                  )}
+                />
+                <X
+                  className={cn(
+                    "absolute inset-0 h-5 w-5 transition-all duration-300",
+                    open ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
+                  )}
+                />
+              </span>
             </button>
           </div>
         </div>
-      </header>
 
-      {/* Mobile full-screen overlay */}
-      <div
-        className={cn(
-          "lg:hidden fixed inset-0 z-[100] bg-background transition-all duration-300",
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        )}
-      >
-        <div className="absolute inset-0 bg-honeycomb-soft opacity-50 pointer-events-none" />
-        <div className="relative h-full flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
-          <button
-            onClick={() => setOpen(false)}
-            className="absolute top-5 right-5 inline-flex items-center justify-center h-11 w-11 rounded-full bg-cream border border-border"
-            aria-label="Close menu"
+        {/* Mobile menu — integrated, drops from header */}
+        <div
+          className={cn(
+            "lg:hidden absolute left-0 right-0 top-full origin-top overflow-hidden transition-all duration-300 ease-out bg-background/98 backdrop-blur-xl border-b border-border shadow-lift",
+            open
+              ? "opacity-100 max-h-[calc(100vh-5rem)] visible"
+              : "opacity-0 max-h-0 invisible"
+          )}
+          style={{ transitionProperty: "opacity, max-height, transform" }}
+        >
+          <div className="absolute inset-0 bg-honeycomb-soft opacity-30 pointer-events-none" />
+          <div
+            className={cn(
+              "relative max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-5 transition-transform duration-300",
+              open ? "translate-y-0" : "-translate-y-2"
+            )}
           >
-            <X className="h-5 w-5" />
-          </button>
-          <nav className="flex flex-col gap-1.5 mt-2">
-            {navItems.map((item) => {
-              if (!item.children) {
+            <nav className="flex flex-col gap-1.5">
+              {navItems.map((item) => {
+                if (!item.children) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.to!}
+                      onClick={() => setOpen(false)}
+                      className="px-5 py-3.5 rounded-2xl text-base font-display font-semibold text-ink bg-card border border-border"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                const isOpen = expanded === item.label;
                 return (
-                  <Link
-                    key={item.label}
-                    to={item.to!}
-                    onClick={() => setOpen(false)}
-                    className="px-5 py-4 rounded-2xl text-lg font-display font-semibold text-ink bg-card border border-border"
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-              const isOpen = expanded === item.label;
-              return (
-                <div key={item.label} className="rounded-2xl bg-card border border-border overflow-hidden">
-                  <button
-                    onClick={() => setExpanded(isOpen ? null : item.label)}
-                    className="w-full flex items-center justify-between px-5 py-4 text-lg font-display font-semibold text-ink"
-                  >
-                    {item.label}
-                    <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
-                  </button>
-                  <div
-                    className={cn(
-                      "grid transition-all duration-300",
-                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    )}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="px-3 pb-3 flex flex-col gap-1">
-                        {item.children.map((c) => (
-                          <Link
-                            key={c.to}
-                            to={c.to}
-                            onClick={() => setOpen(false)}
-                            className="px-4 py-3 rounded-xl text-base text-muted-foreground hover:bg-honey/15 hover:text-ink"
-                          >
-                            {c.label}
-                          </Link>
-                        ))}
+                  <div key={item.label} className="rounded-2xl bg-card border border-border overflow-hidden">
+                    <button
+                      onClick={() => setExpanded(isOpen ? null : item.label)}
+                      className="w-full flex items-center justify-between px-5 py-3.5 text-base font-display font-semibold text-ink"
+                    >
+                      {item.label}
+                      <ChevronDown className={cn("h-5 w-5 transition-transform", isOpen && "rotate-180")} />
+                    </button>
+                    <div
+                      className={cn(
+                        "grid transition-all duration-300",
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      )}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="px-3 pb-3 flex flex-col gap-1">
+                          {item.children.map((c) => (
+                            <Link
+                              key={c.to}
+                              to={c.to}
+                              onClick={() => setOpen(false)}
+                              className="px-4 py-3 rounded-xl text-sm text-muted-foreground hover:bg-honey/15 hover:text-ink"
+                            >
+                              {c.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-            <Button asChild className="mt-4 rounded-full h-12 text-base shadow-honey" onClick={() => setOpen(false)}>
-              <Link to="/contact">Enroll Now</Link>
-            </Button>
-          </nav>
-          <div className="mt-auto pt-8 text-center text-xs text-muted-foreground">
-            +91 (555) BUSY-BEE · hello@busybees.edu
+                );
+              })}
+            </nav>
+            <div className="mt-6 text-center text-xs text-muted-foreground">
+              +91 9011551028 · hello@busybees.edu
+            </div>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 };
