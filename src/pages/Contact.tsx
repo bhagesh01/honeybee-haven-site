@@ -10,11 +10,18 @@ import classroom from "@/assets/classroom.webp";
 const Contact = () => {
   return (
     <>
+      <Seo
+        title="Contact Busy Bees Preschool, Nigdi Pradhikaran, Pune"
+        description={`Visit Busy Bees Preschool & Daycare in Nigdi Pradhikaran, Pune. Call ${BUSINESS.phoneDisplay} or email ${BUSINESS.email}. Mon–Fri 9 AM–2 PM, Sat 9 AM–12 PM.`}
+        path="/contact"
+        keywords={["contact Busy Bees Preschool", "preschool Nigdi contact", "preschool Pradhikaran phone", "Busy Bees admissions Pune"]}
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])}
+      />
       <PageHero
         eyebrow="Contact us"
         title="Come visit"
         highlight="the hive"
-        description="The best way to know if BusyBees is right for your child? Walk through our doors. We'd love to host you."
+        description="The best way to know if Busy Bees is right for your child? Walk through our doors at Nigdi Pradhikaran. We'd love to host you."
         trail={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
@@ -52,36 +59,54 @@ const Contact = () => {
                 <p className="relative mt-2 text-cream/70">
                   Drop in for a coffee and a campus tour — or reach us any way you like.
                 </p>
-                <ul className="relative mt-8 space-y-6">
-                  <li className="flex gap-4">
-                    <MapPin className="h-5 w-5 text-honey shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-medium">Our campus</div>
-                      <div className="text-cream/70 text-sm mt-0.5">123 Sunny Lane, Education District,<br />Creative City – 54321</div>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <Phone className="h-5 w-5 text-honey shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-medium">Call us</div>
-                      <a href="tel:+915552879233" className="text-cream/70 text-sm mt-0.5 hover:text-honey">+91 (555) BUSY-BEE</a>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <Mail className="h-5 w-5 text-honey shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-medium">Email</div>
-                      <a href="mailto:hello@busybees.edu" className="text-cream/70 text-sm mt-0.5 hover:text-honey">hello@busybees.edu</a>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <Clock className="h-5 w-5 text-honey shrink-0 mt-0.5" />
-                    <div>
-                      <div className="font-medium">Hours</div>
-                      <div className="text-cream/70 text-sm mt-0.5">Mon – Fri · 7:30 AM – 6:30 PM<br />Sat · 9 AM – 1 PM (tours only)</div>
-                    </div>
-                  </li>
-                </ul>
+                <address className="not-italic">
+                  <ul className="relative mt-8 space-y-6">
+                    <li className="flex gap-4">
+                      <MapPin className="h-5 w-5 text-honey shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-medium">Our campus</div>
+                        <div className="text-cream/70 text-sm mt-0.5">{BUSINESS.address.street},<br />{BUSINESS.address.locality}, {BUSINESS.address.city} – {BUSINESS.address.postalCode}</div>
+                      </div>
+                    </li>
+                    <li className="flex gap-4">
+                      <Phone className="h-5 w-5 text-honey shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-medium">Call us</div>
+                        <a href={`tel:${BUSINESS.phone}`} className="block text-cream/70 text-sm mt-0.5 hover:text-honey">{BUSINESS.phoneDisplay}</a>
+                        <a href={`tel:${BUSINESS.phoneAlt}`} className="block text-cream/70 text-sm hover:text-honey">{BUSINESS.phoneAltDisplay}</a>
+                      </div>
+                    </li>
+                    <li className="flex gap-4">
+                      <MessageCircle className="h-5 w-5 text-honey shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-medium">WhatsApp</div>
+                        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="text-cream/70 text-sm mt-0.5 hover:text-honey">{BUSINESS.whatsappDisplay}</a>
+                      </div>
+                    </li>
+                    <li className="flex gap-4">
+                      <Mail className="h-5 w-5 text-honey shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-medium">Email</div>
+                        <a href={`mailto:${BUSINESS.email}`} className="text-cream/70 text-sm mt-0.5 hover:text-honey">{BUSINESS.email}</a>
+                      </div>
+                    </li>
+                    <li className="flex gap-4">
+                      <Clock className="h-5 w-5 text-honey shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-medium">Hours</div>
+                        <div className="text-cream/70 text-sm mt-0.5">Mon – Fri · 9:00 AM – 2:00 PM<br />Saturday · 9:00 AM – 12:00 PM<br />Sunday · Closed</div>
+                      </div>
+                    </li>
+                  </ul>
+                </address>
+                <div className="relative mt-8 flex flex-col gap-3">
+                  <Button asChild size="lg" className="rounded-full shadow-honey">
+                    <a href={`tel:${BUSINESS.phone}`}><Phone className="h-4 w-4" /> Call now</a>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="rounded-full bg-transparent border-cream/30 text-cream hover:bg-cream hover:text-ink">
+                    <a href={whatsappLink()} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-4 w-4" /> WhatsApp Us</a>
+                  </Button>
+                </div>
               </div>
             </Reveal>
           </div>
