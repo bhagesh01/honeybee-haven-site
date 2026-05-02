@@ -23,6 +23,8 @@ const loadTestimonials = () => import("./pages/Testimonials.tsx");
 const loadWhyBusyBees = () => import("./pages/WhyBusyBees.tsx");
 const loadContact = () => import("./pages/Contact.tsx");
 const loadNotFound = () => import("./pages/NotFound.tsx");
+const loadLocation = () => import("./pages/LocationLanding.tsx");
+const Location = lazy(loadLocation);
 
 const About = lazy(loadAbout);
 const PrincipalDesk = lazy(loadPrincipalDesk);
