@@ -1,7 +1,10 @@
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
 import { SmartImage } from "@/components/site/SmartImage";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
+import { Button } from "@/components/ui/button";
+import { BUSINESS, fullAddress, whatsappLink } from "@/lib/business";
 import classroom from "@/assets/classroom.webp";
 
 const Contact = () => {
