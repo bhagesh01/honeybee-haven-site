@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Baby, Sparkles, Sun, Palette, Rocket, Clock, Users } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 
 const programs = [
   { slug: "preschool",  icon: Sparkles, title: "Preschool",     age: "3 – 6 years",    desc: "A holistic foundation in literacy, numeracy and emotional intelligence — through play, story and project work.", tag: "Most loved" },
@@ -14,6 +15,13 @@ const programs = [
 const Programs = () => {
   return (
     <>
+      <Seo
+        title="Preschool, Daycare, Playgroup & Summer Camp Programs in Nigdi, Pune"
+        description="Explore Busy Bees Preschool's programs in Nigdi Pradhikaran, Pune — Playgroup, Nursery, Junior & Senior KG, full-day Daycare, BuzzyClub and Summer Camps."
+        path="/programs"
+        keywords={["preschool programs Nigdi", "daycare Pradhikaran", "playgroup Pune", "summer camp Nigdi"]}
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Programs", path: "/programs" }])}
+      />
       <PageHero
         eyebrow="What we offer"
         title="Programs designed for"

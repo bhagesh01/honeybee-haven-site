@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ShieldCheck, Award, HeartHandshake, GraduationCap, Sparkles, Clock, Users, Sprout, Smile } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import classroom from "@/assets/classroom.webp";
 

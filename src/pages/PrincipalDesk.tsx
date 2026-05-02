@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import { Quote } from "lucide-react";
 import principal from "@/assets/principal_desk.png";
 

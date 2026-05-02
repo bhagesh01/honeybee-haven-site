@@ -3,6 +3,7 @@ import { Quote, Star, ChevronLeft, ChevronRight, CalendarDays, Heart, PartyPoppe
 import Autoplay from "embla-carousel-autoplay";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,

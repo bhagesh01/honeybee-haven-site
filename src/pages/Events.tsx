@@ -1,6 +1,7 @@
 import { Calendar, MapPin } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import stage from "@/assets/g-stage.jpg";
 import garden from "@/assets/g-garden.jpg";
 import reading from "@/assets/g-reading.jpg";

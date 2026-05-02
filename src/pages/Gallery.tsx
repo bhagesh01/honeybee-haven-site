@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SmartImage } from "@/components/site/SmartImage";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import {
   Pagination,
   PaginationContent,
