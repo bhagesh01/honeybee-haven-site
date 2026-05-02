@@ -7,6 +7,12 @@ import principal from "@/assets/principal_desk.png";
 const PrincipalDesk = () => {
   return (
     <>
+      <Seo
+        title="From the Principal's Desk — Busy Bees Preschool, Nigdi Pune"
+        description="A personal note from the founder of Busy Bees Preschool, Nigdi Pradhikaran, Pune — on early years, our community and the children we serve."
+        path="/principal-desk"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Principal's Desk", path: "/principal-desk" }])}
+      />
       <PageHero
         eyebrow="Principal's Desk"
         title="Welcome to"

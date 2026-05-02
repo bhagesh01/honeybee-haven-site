@@ -107,6 +107,12 @@ const Testimonials = () => {
 
   return (
     <>
+      <Seo
+        title="Parent Reviews & Testimonials — Busy Bees Preschool, Nigdi"
+        description="Read what Pune parents say about Busy Bees Preschool & Daycare in Nigdi Pradhikaran — real reviews from real families."
+        path="/testimonials"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Testimonials", path: "/testimonials" }])}
+      />
       <PageHero
         eyebrow="Partner's Corner"
         title="In the words of our"

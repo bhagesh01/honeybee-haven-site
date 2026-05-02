@@ -22,6 +22,12 @@ const past = [
 const Events = () => {
   return (
     <>
+      <Seo
+        title="Events & Celebrations — Busy Bees Preschool, Nigdi Pradhikaran"
+        description="Festivals, workshops and celebrations at Busy Bees Preschool, Nigdi Pradhikaran, Pune. See what's happening this season."
+        path="/events"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }])}
+      />
       <PageHero
         eyebrow="Celebrations"
         title="Moments that make a"

@@ -63,6 +63,13 @@ const swarmActivities = [
 const Preschool = () => {
   return (
     <>
+      <Seo
+        title="Preschool in Nigdi Pradhikaran, Pune — Busy Bees"
+        description="Preschool program at Busy Bees, Nigdi Pradhikaran (Pune) for ages 3–6. Montessori + play-way curriculum, certified educators and a safe campus."
+        path="/programs/preschool"
+        keywords={["preschool Nigdi", "preschool Pradhikaran", "Montessori Pune", "nursery school Nigdi"]}
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Programs", path: "/programs" }, { name: "Preschool", path: "/programs/preschool" }])}
+      />
       <PageHero
         eyebrow="Ages 1.6 – 6"
         title="Preschool —"
