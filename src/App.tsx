@@ -86,6 +86,12 @@ const RoutePrefetcher = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Seo
+        title="Busy Bees Preschool — Best Preschool & Daycare in Nigdi Pradhikaran, Pune"
+        description="Busy Bees Preschool in Nigdi Pradhikaran, Pune offers play-based learning, daycare, playgroup and summer camps for children aged 1.5–6 years. Admissions open."
+        path="/"
+        jsonLd={localBusinessSchema()}
+      />
       <LoadingScreen />
       <Toaster />
       <Sonner />
@@ -106,6 +112,9 @@ const App = () => (
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/why-busybees" element={<WhyBusyBees />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/preschool-in-nigdi" element={<Location />} />
+              <Route path="/preschool-in-pradhikaran" element={<Location />} />
+              <Route path="/playgroup-in-pune" element={<Location />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Route>
