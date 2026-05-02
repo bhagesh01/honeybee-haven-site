@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import garden from "@/assets/g-garden.jpg";
@@ -33,6 +34,13 @@ const features = [
 const Daycare = () => {
   return (
     <>
+      <Seo
+        title="Daycare in Nigdi Pradhikaran, Pune — Busy Bees Daycare"
+        description="Trusted full-day daycare in Nigdi Pradhikaran, Pune for children 1.5–6 years. Safe, homely, expert-designed routines for working parents."
+        path="/programs/daycare"
+        keywords={["daycare Nigdi", "daycare Pradhikaran Pune", "creche Nigdi", "full day daycare Pune"]}
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Programs", path: "/programs" }, { name: "Daycare", path: "/programs/daycare" }])}
+      />
       <PageHero
         eyebrow="Ages 1.5 – 6"
         title="Daycare —"

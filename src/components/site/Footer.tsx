@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone, Instagram, Facebook, Youtube } from "lucide-react";
-import bee from "@/assets/bee-mascot.webp";
+import { BUSINESS, fullAddress } from "@/lib/business";
 import beeLogo from "@/assets/logo.png";
 
 export const Footer = () => {
@@ -42,9 +42,10 @@ export const Footer = () => {
             {[
               ["About", "/about"],
               ["Programs", "/programs"],
-              ["Events", "/events"],
+              ["Preschool in Nigdi", "/preschool-in-nigdi"],
+              ["Preschool in Pradhikaran", "/preschool-in-pradhikaran"],
+              ["Playgroup in Pune", "/playgroup-in-pune"],
               ["Gallery", "/gallery"],
-              ["Partner's Corner", "/partners-corner"],
               ["Contact", "/contact"],
             ].map(([label, to]) => (
               <li key={label}>
@@ -56,11 +57,13 @@ export const Footer = () => {
 
         <div className="md:col-span-4">
           <h4 className="font-display text-lg text-cream mb-4">Visit the Hive</h4>
-          <ul className="space-y-3 text-sm text-cream/75">
-            <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-honey" /> 123 Sunny Lane, Education District, Creative City</li>
-            <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-honey" /> +91 (555) BUSY-BEE</li>
-            <li className="flex gap-3"><Mail className="h-4 w-4 mt-0.5 text-honey" /> hello@busybees.edu</li>
-          </ul>
+          <address className="not-italic">
+            <ul className="space-y-3 text-sm text-cream/75">
+              <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-honey shrink-0" /> <span>{fullAddress}</span></li>
+              <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-honey shrink-0" /> <a href={`tel:${BUSINESS.phone}`} className="hover:text-honey-light">{BUSINESS.phoneDisplay}</a></li>
+              <li className="flex gap-3"><Mail className="h-4 w-4 mt-0.5 text-honey shrink-0" /> <a href={`mailto:${BUSINESS.email}`} className="hover:text-honey-light">{BUSINESS.email}</a></li>
+            </ul>
+          </address>
         </div>
       </div>
 

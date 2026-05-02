@@ -1,6 +1,7 @@
 import { Calendar, MapPin } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import stage from "@/assets/g-stage.jpg";
 import garden from "@/assets/g-garden.jpg";
 import reading from "@/assets/g-reading.jpg";
@@ -21,6 +22,12 @@ const past = [
 const Events = () => {
   return (
     <>
+      <Seo
+        title="Events & Celebrations — Busy Bees Preschool, Nigdi Pradhikaran"
+        description="Festivals, workshops and celebrations at Busy Bees Preschool, Nigdi Pradhikaran, Pune. See what's happening this season."
+        path="/events"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Events", path: "/events" }])}
+      />
       <PageHero
         eyebrow="Celebrations"
         title="Moments that make a"

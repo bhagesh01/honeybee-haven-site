@@ -3,6 +3,7 @@ import { Reveal, SectionHeading } from "@/components/site/SectionHeading";
 import { Heart, Compass, Users, Leaf, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import classroom from "@/assets/aboutbusybuzz.jfif";
 import baby from "@/assets/about_bussy_small.jpg";
 
@@ -16,6 +17,13 @@ const values = [
 const About = () => {
   return (
     <>
+      <Seo
+        title="About Busy Bees Preschool — Nigdi Pradhikaran, Pune"
+        description="Since 2010, Busy Bees has been a trusted preschool in Nigdi Pradhikaran, Pune — warm, play-based and built around how children actually grow."
+        path="/about"
+        keywords={["about Busy Bees Preschool", "preschool Nigdi Pune", "play based preschool Pradhikaran"]}
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About", path: "/about" }])}
+      />
       <PageHero
         eyebrow="About Busy Bees"
         title="Welcome to the"

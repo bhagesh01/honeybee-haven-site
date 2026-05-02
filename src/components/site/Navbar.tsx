@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BUSINESS } from "@/lib/business";
 import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/beelogo.png";
 
@@ -76,9 +77,9 @@ export const Navbar = () => {
       {/* Top bar */}
       <div className="hidden md:block bg-ink text-cream/90 text-xs">
         <div className="container-wide flex items-center justify-between py-2">
-          <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-honey" /> +91 (555) BUSY-BEE</span>
+          <a href={`tel:${BUSINESS.phone}`} className="flex items-center gap-2 hover:text-honey-light"><Phone className="h-3 w-3 text-honey" /> {BUSINESS.phoneDisplay}</a>
           <span className="font-hand text-honey-light text-base">Admissions open for 2025–26 🐝</span>
-          <span>hello@busybees.edu</span>
+          <a href={`mailto:${BUSINESS.email}`} className="hover:text-honey-light">{BUSINESS.email}</a>
         </div>
       </div>
 
@@ -237,7 +238,7 @@ export const Navbar = () => {
             </Button>
           </nav>
           <div className="mt-auto pt-8 text-center text-xs text-muted-foreground">
-            +91 (555) BUSY-BEE · hello@busybees.edu
+            {BUSINESS.phoneDisplay} · {BUSINESS.email}
           </div>
         </div>
       </div>

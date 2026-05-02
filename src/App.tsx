@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { RouteFallback } from "@/components/site/RouteFallback";
+import { Seo, localBusinessSchema } from "@/components/site/Seo";
 import Index from "./pages/Index.tsx";
 
 // Lazy route loaders kept as references so we can prefetch them on idle / hover.
@@ -22,6 +23,8 @@ const loadTestimonials = () => import("./pages/Testimonials.tsx");
 const loadWhyBusyBees = () => import("./pages/WhyBusyBees.tsx");
 const loadContact = () => import("./pages/Contact.tsx");
 const loadNotFound = () => import("./pages/NotFound.tsx");
+const loadLocation = () => import("./pages/LocationLanding.tsx");
+const Location = lazy(loadLocation);
 
 const About = lazy(loadAbout);
 const PrincipalDesk = lazy(loadPrincipalDesk);
@@ -83,6 +86,12 @@ const RoutePrefetcher = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Seo
+        title="Busy Bees Preschool — Best Preschool & Daycare in Nigdi Pradhikaran, Pune"
+        description="Busy Bees Preschool in Nigdi Pradhikaran, Pune offers play-based learning, daycare, playgroup and summer camps for children aged 1.5–6 years. Admissions open."
+        path="/"
+        jsonLd={localBusinessSchema()}
+      />
       <LoadingScreen />
       <Toaster />
       <Sonner />
@@ -103,6 +112,9 @@ const App = () => (
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/why-busybees" element={<WhyBusyBees />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/preschool-in-nigdi" element={<Location />} />
+              <Route path="/preschool-in-pradhikaran" element={<Location />} />
+              <Route path="/playgroup-in-pune" element={<Location />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Route>

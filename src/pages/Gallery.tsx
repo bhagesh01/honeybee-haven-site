@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SmartImage } from "@/components/site/SmartImage";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import {
   Pagination,
   PaginationContent,
@@ -84,6 +85,12 @@ const Gallery = () => {
 
   return (
     <>
+      <Seo
+        title="Photo Gallery — Busy Bees Preschool, Nigdi Pradhikaran"
+        description="Peek inside Busy Bees Preschool & Daycare in Nigdi Pradhikaran, Pune — classrooms, play areas, celebrations and everyday joy."
+        path="/gallery"
+        jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Gallery", path: "/gallery" }])}
+      />
       <PageHero
         eyebrow="Photo gallery"
         title="Real days,"
