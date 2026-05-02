@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { RouteFallback } from "@/components/site/RouteFallback";
+import { Seo, localBusinessSchema } from "@/components/site/Seo";
 import Index from "./pages/Index.tsx";
 
 // Lazy route loaders kept as references so we can prefetch them on idle / hover.
