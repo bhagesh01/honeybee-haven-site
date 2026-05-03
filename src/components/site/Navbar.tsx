@@ -8,7 +8,7 @@ import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/beelogo.png";
 
 type SubLink = { to: string; label: string };
-type NavItem = { to?: string; label: string; children?: SubLink[] };
+type NavItem = { to?: string; label: string; children?: SubLink[]; badge?: string };
 
 const navItems: NavItem[] = [
   { to: "/", label: "Home" },
@@ -43,6 +43,8 @@ const navItems: NavItem[] = [
       { to: "/why-busybees", label: "Why BusyBees" },
     ],
   },
+  { to: "/admissions", label: "Admissions", badge: "Open" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
 ];
 
