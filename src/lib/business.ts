@@ -8,7 +8,7 @@ export const BUSINESS = {
   description:
     "Busy Bees Preschool in Nigdi Pradhikaran, Pune is a play-based preschool and daycare nurturing curiosity, kindness and creativity in every child since 2010.",
   founded: "2010",
-  url: "https://www.busybeespreschool.in",
+  url: "https://honeybee-haven-site.lovable.app",
   logoPath: "/favicon.png",
   email: "bbees.ps@gmail.com",
   phone: "+919011551028",
