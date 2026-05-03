@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://honeybee-haven-site.lovable.app/sitemap.xml
+Sitemap: https://www.busybeespreschool.in/sitemap.xml

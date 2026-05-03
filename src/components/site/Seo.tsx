@@ -13,8 +13,7 @@ type SeoProps = {
   noIndex?: boolean;
 };
 
-const DEFAULT_IMAGE =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a15f0943-f769-439d-b1ea-57a694302037/id-preview-14f0d968--f06785bd-ab85-4105-8c71-a2f2e784fc57.lovable.app-1776841156961.png";
+const DEFAULT_IMAGE = "https://www.busybeespreschool.in/og-image.jpg";
 
 export const Seo = ({
   title,
