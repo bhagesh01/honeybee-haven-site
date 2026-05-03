@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { Chatbot } from "./Chatbot";
 
 export const SiteLayout = () => {
   const location = useLocation();
@@ -26,7 +25,6 @@ export const SiteLayout = () => {
         </AnimatePresence>
       </main>
       <Footer />
-      <Chatbot />
     </div>
   );
 };
