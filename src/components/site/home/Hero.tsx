@@ -129,7 +129,8 @@ export const Hero = () => {
                   {!loaded[i] && (
                     <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
                   )}
-                  <picture>
+                  <picture className="block w-full h-full">
+                    {/* @ts-ignore picture accepts className via React */}
                     {s.webp && <source srcSet={s.webp} type="image/webp" />}
                     <img
                       src={s.src}
