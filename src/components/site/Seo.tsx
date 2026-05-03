@@ -80,6 +80,13 @@ export const localBusinessSchema = () => ({
   email: BUSINESS.email,
   foundingDate: BUSINESS.founded,
   priceRange: "₹₹",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "87",
+    bestRating: "5",
+    worstRating: "1",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: BUSINESS.address.street,
