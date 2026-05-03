@@ -113,15 +113,22 @@ export const Navbar = () => {
                     end={item.to === "/"}
                     className={({ isActive }) =>
                       cn(
-                        "px-3 py-2 rounded-full text-sm font-medium transition-colors relative",
-                        isActive ? "text-ink" : "text-muted-foreground hover:text-ink"
+                        "px-3 py-2 rounded-full text-sm font-medium transition-colors relative inline-flex items-center gap-1.5",
+                        item.badge
+                          ? "bg-accent text-accent-foreground hover:bg-accent/90 shadow-soft"
+                          : isActive
+                          ? "text-ink"
+                          : "text-muted-foreground hover:text-ink"
                       )
                     }
                   >
                     {({ isActive }) => (
                       <>
                         {item.label}
-                        {isActive && (
+                        {item.badge && (
+                          <span className="text-[9px] font-bold uppercase tracking-wider bg-honey text-ink px-1.5 py-0.5 rounded-full">{item.badge}</span>
+                        )}
+                        {!item.badge && isActive && (
                           <span className="absolute left-3 right-3 -bottom-0.5 h-[3px] rounded-full bg-honey" />
                         )}
                       </>
