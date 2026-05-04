@@ -108,6 +108,20 @@ export const Navbar = () => {
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               if (!item.children) {
+                if (item.highlight) {
+                  return (
+                    <RouterNavLink
+                      key={item.label}
+                      to={item.to!}
+                      className="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-honey text-ink shadow-honey hover:bg-honey-dark hover:text-cream transition-colors"
+                    >
+                      {item.label}
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-ink text-honey px-2 py-0.5 rounded-full">
+                        Open
+                      </span>
+                    </RouterNavLink>
+                  );
+                }
                 return (
                   <RouterNavLink
                     key={item.label}
