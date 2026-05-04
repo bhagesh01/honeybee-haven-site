@@ -3,6 +3,8 @@ import { lazy, Suspense } from "react";
 import { ArrowLeft, CheckCircle2, Sparkles, Quote } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/SectionHeading";
+import { Seo, breadcrumbSchema } from "@/components/site/Seo";
+import { BUSINESS } from "@/lib/business";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import classroom from "@/assets/classroom.webp";
@@ -333,8 +335,44 @@ const ProgramDetail = () => {
   const p = data[slug];
   if (!p) return <Navigate to="/programs" replace />;
 
+  const seoMap: Record<string, { title: string; description: string; keywords: string[] }> = {
+    buzzyclub: {
+      title: "BuzzyClub After-School Enrichment — Busy Bees Preschool Nigdi",
+      description: "BuzzyClub at Busy Bees Nigdi Pradhikaran — after-school programme with phonics, science club and EnerGym fitness for children aged 5–8 years.",
+      keywords: ["after school programme Nigdi", "enrichment club Pune", "kids phonics Nigdi", "after school activities Pradhikaran"],
+    },
+    "be-creative": {
+      title: "Be Creative Weekend Art Studio — Busy Bees Preschool Nigdi",
+      description: "Weekend art sessions at Busy Bees Preschool Nigdi — drawing, painting, calligraphy and Warli for children aged 3 and above.",
+      keywords: ["kids art class Nigdi", "weekend art studio Pune", "children creative workshop Pradhikaran"],
+    },
+    "summer-camps": {
+      title: "Summer Camps for Kids in Nigdi Pune — Busy Bees",
+      description: "Themed summer camps at Busy Bees Preschool, Nigdi Pradhikaran Pune — art, drama, music, field trips and fireless cooking for ages 2+.",
+      keywords: ["summer camp Nigdi Pune", "kids summer camp Pradhikaran", "summer programme Pune children"],
+    },
+  };
+
+  const titleClean = p.title.replace(/—.*/, "").trim();
+  const pageSeo = seoMap[slug] ?? {
+    title: `${titleClean} — Busy Bees Preschool Nigdi`,
+    description: p.desc ?? BUSINESS.description,
+    keywords: ["preschool programme Nigdi", "Busy Bees Preschool Pune"],
+  };
+
   return (
     <>
+      <Seo
+        title={pageSeo.title}
+        description={pageSeo.description}
+        path={`/programs/${slug}`}
+        keywords={pageSeo.keywords}
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Programs", path: "/programs" },
+          { name: titleClean, path: `/programs/${slug}` },
+        ])}
+      />
       <PageHero
         eyebrow={p.eyebrow}
         title={p.title}
@@ -343,7 +381,7 @@ const ProgramDetail = () => {
         trail={[
           { label: "Home", to: "/" },
           { label: "Programs", to: "/programs" },
-          { label: p.title.replace(/—.*/, "").trim() },
+          { label: titleClean },
         ]}
       />
 

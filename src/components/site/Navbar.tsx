@@ -8,7 +8,7 @@ import bee from "@/assets/bee-mascot.webp";
 import beeLogo from "@/assets/beelogo.png";
 
 type SubLink = { to: string; label: string };
-type NavItem = { to?: string; label: string; children?: SubLink[] };
+type NavItem = { to?: string; label: string; children?: SubLink[]; highlight?: boolean };
 
 const navItems: NavItem[] = [
   { to: "/", label: "Home" },
@@ -43,8 +43,12 @@ const navItems: NavItem[] = [
       { to: "/why-busybees", label: "Why BusyBees" },
     ],
   },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact Us" },
+  { to: "/admissions", label: "Admissions", highlight: true },
 ];
+
+type NavItemExt = NavItem & { highlight?: boolean };
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -104,6 +108,20 @@ export const Navbar = () => {
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               if (!item.children) {
+                if (item.highlight) {
+                  return (
+                    <RouterNavLink
+                      key={item.label}
+                      to={item.to!}
+                      className="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-honey text-ink shadow-honey hover:bg-honey-dark hover:text-cream transition-colors"
+                    >
+                      {item.label}
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-ink text-honey px-2 py-0.5 rounded-full">
+                        Open
+                      </span>
+                    </RouterNavLink>
+                  );
+                }
                 return (
                   <RouterNavLink
                     key={item.label}
@@ -193,9 +211,19 @@ export const Navbar = () => {
                     key={item.label}
                     to={item.to!}
                     onClick={() => setOpen(false)}
-                    className="px-5 py-4 rounded-2xl text-lg font-display font-semibold text-ink bg-card border border-border"
+                    className={cn(
+                      "px-5 py-4 rounded-2xl text-lg font-display font-semibold border flex items-center justify-between",
+                      item.highlight
+                        ? "bg-honey text-ink border-honey shadow-honey"
+                        : "text-ink bg-card border-border"
+                    )}
                   >
                     {item.label}
+                    {item.highlight && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-ink text-honey px-2 py-0.5 rounded-full">
+                        Open
+                      </span>
+                    )}
                   </Link>
                 );
               }

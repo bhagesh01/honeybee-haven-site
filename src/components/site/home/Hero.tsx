@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, Sparkles, ChevronLeft, ChevronRight } from "lucid
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// carousel images
+// carousel images (PNG/JPG fallbacks)
 import image1 from "@/assets/corousel_img_1.png";
 import image2 from "@/assets/pyjamaParty1.jpg";
 import image3 from "@/assets/corousel_img_3.png";
@@ -12,15 +12,23 @@ import image4 from "@/assets/trip1.jpg";
 import image5 from "@/assets/sportday1.jpg";
 import image6 from "@/assets/slate.jpg";
 
+// WebP versions (smaller, faster)
+import image1Webp from "@/assets/corousel_img_1.webp";
+import image2Webp from "@/assets/pyjamaParty1.webp";
+import image3Webp from "@/assets/corousel_img_3.webp";
+import image4Webp from "@/assets/trip1.webp";
+import image5Webp from "@/assets/sportday1.webp";
+import image6Webp from "@/assets/slate.webp";
+
 import { cn } from "@/lib/utils";
 
 const slides = [
-  { src: image1, alt: "Smiling preschool child in a warm classroom" },
-  { src: image2, alt: "Children at the BusyBees pyjama party" },
-  { src: image3, alt: "Children engaged in a creative activity" },
-  { src: image4, alt: "Children enjoying a school trip" },
-  { src: image5, alt: "Sports day at BusyBees" },
-  { src: image6, alt: "Child writing on a slate" },
+  { src: image1, webp: image1Webp, alt: "Smiling preschool child in a warm classroom" },
+  { src: image2, webp: image2Webp, alt: "Children at the BusyBees pyjama party" },
+  { src: image3, webp: image3Webp, alt: "Children engaged in a creative activity" },
+  { src: image4, webp: image4Webp, alt: "Children enjoying a school trip" },
+  { src: image5, webp: image5Webp, alt: "Sports day at BusyBees" },
+  { src: image6, webp: image6Webp, alt: "Child writing on a slate" },
 ];
 
 export const Hero = () => {
@@ -62,6 +70,10 @@ export const Hero = () => {
                 </svg>
               </span>
             </h1>
+
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-honey-dark">
+              Preschool & Daycare · Nigdi Pradhikaran, Pune
+            </p>
 
             <p className="mt-7 text-[clamp(1rem,1.6vw,1.125rem)] text-muted-foreground max-w-lg leading-relaxed">
               At BusyBees, we believe every child is a natural researcher. Our play-based curriculum blends Montessori
@@ -123,20 +135,23 @@ export const Hero = () => {
                   {!loaded[i] && (
                     <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
                   )}
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    decoding={i === 0 ? "sync" : "async"}
-                    {...(i === 0 ? { fetchPriority: "high" as any } : {})}
-                    onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
-                    sizes="(min-width:1024px) 55vw, 92vw"
-                    style={{ objectPosition: "center 30%" }}
-                    className={cn(
-                      "w-full h-full object-cover transition-opacity duration-500",
-                      loaded[i] ? "opacity-100" : "opacity-0"
-                    )}
-                  />
+                  <picture>
+                    <source srcSet={s.webp} type="image/webp" />
+                    <img
+                      src={s.src}
+                      alt={s.alt}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding={i === 0 ? "sync" : "async"}
+                      {...(i === 0 ? { fetchPriority: "high" as any } : {})}
+                      onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
+                      sizes="(min-width:1024px) 55vw, 92vw"
+                      style={{ objectPosition: "center 30%" }}
+                      className={cn(
+                        "w-full h-full object-cover transition-opacity duration-500",
+                        loaded[i] ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </picture>
                 </div>
               ))}
             </div>

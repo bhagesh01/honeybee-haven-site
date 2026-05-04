@@ -89,6 +89,7 @@ const Gallery = () => {
         title="Photo Gallery — Busy Bees Preschool, Nigdi Pradhikaran"
         description="Peek inside Busy Bees Preschool & Daycare in Nigdi Pradhikaran, Pune — classrooms, play areas, celebrations and everyday joy."
         path="/gallery"
+        keywords={["preschool gallery Nigdi", "busy bees photos Pune", "preschool activities Nigdi Pradhikaran"]}
         jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Gallery", path: "/gallery" }])}
       />
       <PageHero
