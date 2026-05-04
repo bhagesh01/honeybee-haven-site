@@ -211,9 +211,19 @@ export const Navbar = () => {
                     key={item.label}
                     to={item.to!}
                     onClick={() => setOpen(false)}
-                    className="px-5 py-4 rounded-2xl text-lg font-display font-semibold text-ink bg-card border border-border"
+                    className={cn(
+                      "px-5 py-4 rounded-2xl text-lg font-display font-semibold border flex items-center justify-between",
+                      item.highlight
+                        ? "bg-honey text-ink border-honey shadow-honey"
+                        : "text-ink bg-card border-border"
+                    )}
                   >
                     {item.label}
+                    {item.highlight && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-ink text-honey px-2 py-0.5 rounded-full">
+                        Open
+                      </span>
+                    )}
                   </Link>
                 );
               }
