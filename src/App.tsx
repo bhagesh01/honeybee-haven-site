@@ -24,7 +24,13 @@ const loadWhyBusyBees = () => import("./pages/WhyBusyBees.tsx");
 const loadContact = () => import("./pages/Contact.tsx");
 const loadNotFound = () => import("./pages/NotFound.tsx");
 const loadLocation = () => import("./pages/LocationLanding.tsx");
+const loadAdmissions = () => import("./pages/Admissions.tsx");
+const loadBlog = () => import("./pages/Blog.tsx");
+const loadBlogPost = () => import("./pages/BlogPost.tsx");
 const Location = lazy(loadLocation);
+const Admissions = lazy(loadAdmissions);
+const Blog = lazy(loadBlog);
+const BlogPost = lazy(loadBlogPost);
 
 const About = lazy(loadAbout);
 const PrincipalDesk = lazy(loadPrincipalDesk);
@@ -69,6 +75,8 @@ const prefetchAllRoutes = () => {
     loadTestimonials();
     loadWhyBusyBees();
     loadNotFound();
+    loadAdmissions();
+    loadBlog();
   });
 };
 
@@ -115,6 +123,9 @@ const App = () => (
               <Route path="/preschool-in-nigdi" element={<Location />} />
               <Route path="/preschool-in-pradhikaran" element={<Location />} />
               <Route path="/playgroup-in-pune" element={<Location />} />
+              <Route path="/admissions" element={<Admissions />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Route>
