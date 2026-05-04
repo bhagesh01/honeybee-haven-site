@@ -135,20 +135,23 @@ export const Hero = () => {
                   {!loaded[i] && (
                     <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted via-cream to-muted" />
                   )}
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    loading={i === 0 ? "eager" : "lazy"}
-                    decoding={i === 0 ? "sync" : "async"}
-                    {...(i === 0 ? { fetchPriority: "high" as any } : {})}
-                    onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
-                    sizes="(min-width:1024px) 55vw, 92vw"
-                    style={{ objectPosition: "center 30%" }}
-                    className={cn(
-                      "w-full h-full object-cover transition-opacity duration-500",
-                      loaded[i] ? "opacity-100" : "opacity-0"
-                    )}
-                  />
+                  <picture>
+                    <source srcSet={s.webp} type="image/webp" />
+                    <img
+                      src={s.src}
+                      alt={s.alt}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding={i === 0 ? "sync" : "async"}
+                      {...(i === 0 ? { fetchPriority: "high" as any } : {})}
+                      onLoad={() => setLoaded((p) => ({ ...p, [i]: true }))}
+                      sizes="(min-width:1024px) 55vw, 92vw"
+                      style={{ objectPosition: "center 30%" }}
+                      className={cn(
+                        "w-full h-full object-cover transition-opacity duration-500",
+                        loaded[i] ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </picture>
                 </div>
               ))}
             </div>
