@@ -63,6 +63,10 @@ export const Hero = () => {
               </span>
             </h1>
 
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-honey-dark">
+              Preschool & Daycare · Nigdi Pradhikaran, Pune
+            </p>
+
             <p className="mt-7 text-[clamp(1rem,1.6vw,1.125rem)] text-muted-foreground max-w-lg leading-relaxed">
               At BusyBees, we believe every child is a natural researcher. Our play-based curriculum blends Montessori
               warmth with modern learning — so your little one stays curious for life.

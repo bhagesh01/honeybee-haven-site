@@ -111,6 +111,7 @@ const Testimonials = () => {
         title="Parent Reviews & Testimonials — Busy Bees Preschool, Nigdi"
         description="Read what Pune parents say about Busy Bees Preschool & Daycare in Nigdi Pradhikaran — real reviews from real families."
         path="/testimonials"
+        keywords={["preschool reviews Nigdi", "busy bees parent testimonials", "best preschool reviews Pune"]}
         jsonLd={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Testimonials", path: "/testimonials" }])}
       />
       <PageHero
