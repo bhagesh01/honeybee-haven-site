@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Seo, breadcrumbSchema } from "@/components/site/Seo";
 import classroom from "@/assets/aboutbusybuzz.jfif";
-import baby from "@/assets/about_bussy_small.jpg";
+import baby from "@/assets/about_bussy_small.png";
 
 const values = [
   { icon: Heart,    title: "Warmth first",  desc: "Children learn best when they feel safe, seen, and quietly cheered on." },
