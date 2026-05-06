@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import { Reveal } from "../SectionHeading";
+import { VideoPlayer } from "@/components/ui/video-thumbnail-player";
 import classroom from "@/assets/classroom.webp";
 import paint from "@/assets/g-paint.webp";
 
@@ -51,6 +52,17 @@ export const Welcome = () => {
               At BusyBees, we believe every child is a natural researcher. Our curriculum blends Montessori principles
               with modern play-based learning, so your little one is always <em className="font-semibold not-italic text-ink">bee bold</em> in their explorations.
             </p>
+
+            <div className="mt-8 w-full max-w-2xl mx-auto lg:mx-0">
+              <VideoPlayer
+                thumbnailUrl="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80"
+                videoUrl="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                title="Welcome to our Hive of Happiness"
+                description="See what makes our community buzz"
+                aspectRatio="16/9"
+                className="rounded-2xl"
+              />
+            </div>
 
             {/* Story points instead of generic icon grid */}
             <ul className="mt-8 space-y-5 max-w-lg">
