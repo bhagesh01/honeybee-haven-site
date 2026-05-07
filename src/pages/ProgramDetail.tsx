@@ -15,9 +15,6 @@ import stage from "@/assets/g-stage.jpg";
 
 const Preschool = lazy(() => import("./Preschool"));
 const Daycare = lazy(() => import("./Daycare"));
-const BuzzyClub = lazy(() => import("./BuzzyClub"));
-const BeCreative = lazy(() => import("./BeCreative"));
-const SummerCamps = lazy(() => import("./SummerCamps"));
 
 type Section =
   | { kind: "para"; text: string }
@@ -331,27 +328,6 @@ const ProgramDetail = () => {
     return (
       <Suspense fallback={null}>
         <Daycare />
-      </Suspense>
-    );
-  }
-  if (slug === "buzzyclub") {
-    return (
-      <Suspense fallback={null}>
-        <BuzzyClub />
-      </Suspense>
-    );
-  }
-  if (slug === "be-creative") {
-    return (
-      <Suspense fallback={null}>
-        <BeCreative />
-      </Suspense>
-    );
-  }
-  if (slug === "summer-camps") {
-    return (
-      <Suspense fallback={null}>
-        <SummerCamps />
       </Suspense>
     );
   }
