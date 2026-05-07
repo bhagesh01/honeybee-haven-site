@@ -188,14 +188,32 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile dropdown — sits under the header bar */}
+        {/* Mobile fullscreen overlay menu */}
         <div
           className={cn(
-            "lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out border-t",
-            open ? "max-h-[80vh] opacity-100 border-border/60" : "max-h-0 opacity-0 border-transparent"
+            "lg:hidden fixed inset-0 z-[100] bg-background transition-opacity duration-200 ease-out",
+            open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
+          style={{ minHeight: "100vh" }}
+          aria-hidden={!open}
         >
-          <nav className="container-wide py-3 flex flex-col gap-1 overflow-y-auto max-h-[75vh]">
+          <div className="flex items-center justify-between h-16 container-wide border-b border-border/60">
+            <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
+              <img src={beeLogo} alt="" className="h-10 w-10 object-contain" />
+              <div className="leading-none">
+                <div className="font-display text-lg font-bold text-ink">BusyBees</div>
+                <div className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground">Preschool & Daycare</div>
+              </div>
+            </Link>
+            <button
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-cream border border-border"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <nav className="container-wide py-3 flex flex-col gap-1 overflow-y-auto" style={{ maxHeight: "calc(100vh - 4rem)" }}>
             {navItems.map((item) => {
               if (!item.children) {
                 return (
@@ -255,6 +273,7 @@ export const Navbar = () => {
             })}
           </nav>
         </div>
+
       </header>
     </>
   );
