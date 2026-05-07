@@ -15,6 +15,9 @@ import stage from "@/assets/g-stage.jpg";
 
 const Preschool = lazy(() => import("./Preschool"));
 const Daycare = lazy(() => import("./Daycare"));
+const BuzzyClub = lazy(() => import("./BuzzyClub"));
+const BeCreative = lazy(() => import("./BeCreative"));
+const SummerCamps = lazy(() => import("./SummerCamps"));
 
 type Section =
   | { kind: "para"; text: string }
