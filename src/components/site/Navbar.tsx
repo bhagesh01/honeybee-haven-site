@@ -67,16 +67,14 @@ export const Navbar = () => {
     setExpanded(null);
   }, [location.pathname, location.hash]);
 
-  // Close on outside click
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
   }, [open]);
 
   return (
