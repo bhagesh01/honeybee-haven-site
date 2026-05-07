@@ -334,6 +334,27 @@ const ProgramDetail = () => {
       </Suspense>
     );
   }
+  if (slug === "buzzyclub") {
+    return (
+      <Suspense fallback={null}>
+        <BuzzyClub />
+      </Suspense>
+    );
+  }
+  if (slug === "be-creative") {
+    return (
+      <Suspense fallback={null}>
+        <BeCreative />
+      </Suspense>
+    );
+  }
+  if (slug === "summer-camps") {
+    return (
+      <Suspense fallback={null}>
+        <SummerCamps />
+      </Suspense>
+    );
+  }
 
   const p = data[slug];
   if (!p) return <Navigate to="/programs" replace />;
